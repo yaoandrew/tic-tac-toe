@@ -11,7 +11,7 @@ class Board
     @cells[cell]
   end
 
-  def mark(cell, marker)
+  def mark_cell(cell, marker)
     @cells[cell] = marker
   end
 

@@ -22,13 +22,13 @@ RSpec.describe Board, '#display_cell' do
   end
 end
 
-RSpec.describe Board, '#mark' do
+RSpec.describe Board, '#mark_cell' do
   context 'When called with a location and marker' do
     it 'marks the board in the correct cell' do
       board = Board.new
       cell = 4
       marker = "X"
-      board.mark(cell, marker)
+      board.mark_cell(cell, marker)
       result = board.display_cell(cell)
       expect(result).to eq(marker)
     end
@@ -48,7 +48,7 @@ RSpec.describe Board, '#cell_open?' do
     it 'returns false' do
       board = Board.new
       cell = 4
-      board.mark(cell, "X")
+      board.mark_cell(cell, "X")
       result = board.cell_open?(cell)
       expect(result).to eq false
     end
