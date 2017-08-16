@@ -1,6 +1,7 @@
 class Board
-  def initialize
-    @cells = Array.new(9, "-")
+  def initialize(size)
+    @size = size
+    @cells = Array.new(size**2, "-")
   end
 
   def length
@@ -11,11 +12,12 @@ class Board
     @cells[cell]
   end
 
-  def mark_cell(cell, marker)
-    @cells[cell] = marker
+  def mark_cell(cell, symbol)
+    @cells[cell] = symbol
   end
 
   def cell_open?(cell)
     @cells[cell] == '-'
   end
+
 end
