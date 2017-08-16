@@ -25,4 +25,9 @@ class Board
     rows.any? { |row| row.all? { |x| row[0] == x && x != "-" }}
   end
 
+  def column_winner?
+    columns = @cells.each_slice(@size).to_a.transpose
+    columns.any? { |column| column.all? { |x| column[0] == x && x != "-" }}
+  end
+
 end

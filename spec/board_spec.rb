@@ -95,3 +95,28 @@ RSpec.describe Board, '#row_winner?' do
     end
   end
 end
+
+RSpec.describe Board, '#column_winner?' do
+  context 'When called and the board contains a winning column' do
+    it 'returns true' do
+      size = 3
+      board = Board.new(size)
+      board.mark_cell(0, "X")
+      board.mark_cell(3, "X")
+      board.mark_cell(6, "X")
+      result = board.column_winner?
+      expect(result).to eq true
+    end
+  end
+  context 'When called and the board does not contain a winning column' do
+    it 'returns false' do
+      size = 3
+      board = Board.new(size)
+      board.mark_cell(0, "X")
+      board.mark_cell(1, "O")
+      board.mark_cell(2, "X")
+      result = board.column_winner?
+      expect(result).to eq false
+    end
+  end
+end
