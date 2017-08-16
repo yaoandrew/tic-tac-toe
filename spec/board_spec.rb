@@ -70,3 +70,28 @@ RSpec.describe Board, '#cell_open?' do
     end
   end
 end
+
+RSpec.describe Board, '#row_winner?' do
+  context 'When called and the board contains a winning row' do
+    it 'returns true' do
+      size = 3
+      board = Board.new(size)
+      board.mark_cell(0, "X")
+      board.mark_cell(1, "X")
+      board.mark_cell(2, "X")
+      result = board.row_winner?
+      expect(result).to eq true
+    end
+  end
+  context 'When called and the board does not contain a winning row' do
+    it 'returns false' do
+      size = 3
+      board = Board.new(size)
+      board.mark_cell(0, "X")
+      board.mark_cell(1, "O")
+      board.mark_cell(2, "X")
+      result = board.row_winner?
+      expect(result).to eq false
+    end
+  end
+end

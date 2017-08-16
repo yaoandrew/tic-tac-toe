@@ -20,4 +20,9 @@ class Board
     @cells[cell] == '-'
   end
 
+  def row_winner?
+    rows = @cells.each_slice(@size).to_a
+    rows.any? { |row| row.all? { |x| row[0] == x && x != "-" }}
+  end
+
 end
