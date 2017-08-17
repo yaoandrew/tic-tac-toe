@@ -122,24 +122,46 @@ RSpec.describe Board, '#column_winner?' do
 end
 
 RSpec.describe Board, '#diagonal_winner?' do
-  context 'When called and the board contains a winning diagonal' do
+  context 'When called and the board contains a winning main diagonal' do
     it 'returns true' do
       size = 3
       board = Board.new(size)
-      board.mark_cell(0, "X")
-      board.mark_cell(4, "X")
-      board.mark_cell(8, "X")
+      board.mark_cell(0, "O")
+      board.mark_cell(4, "O")
+      board.mark_cell(8, "O")
       result = board.diagonal_winner?
       expect(result).to eq true
     end
   end
-  context 'When called and the board does not contain a winning diagonal' do
+  context 'When called and the board contains a winning anti-diagonal' do
+    it 'returns true' do
+      size = 3
+      board = Board.new(size)
+      board.mark_cell(2, "X")
+      board.mark_cell(4, "X")
+      board.mark_cell(6, "X")
+      result = board.diagonal_winner?
+      expect(result).to eq true
+    end
+  end
+  context 'When called and the board does not contain a winning main diagonal' do
     it 'returns false' do
       size = 3
       board = Board.new(size)
-      board.mark_cell(0, "X")
+      board.mark_cell(0, "O")
       board.mark_cell(1, "O")
-      board.mark_cell(2, "X")
+      board.mark_cell(2, "O")
+      result = board.diagonal_winner?
+      expect(result).to eq false
+    end
+  end
+  context 'When called and the board does not contain a winning anti-diagonal' do
+    it 'returns false' do
+      size = 3
+      board = Board.new(size)
+      board.mark_cell(6, "X")
+      board.mark_cell(7, "X")
+      board.mark_cell(8, "X")
       result = board.diagonal_winner?
       expect(result).to eq false
     end

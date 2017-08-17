@@ -31,8 +31,9 @@ class Board
   end
 
   def diagonal_winner?
-  #  diagonals = 0.step(@cells.length - 1, @size + 1 ).map { |x| @cells[x] }
-    #  need anti-diagonal
+    main_diagonal = 0.step(@cells.length - 1, @size + 1 ).map { |x| @cells[x] }
+    anti_diagonal = (@size - 1).step(@cells.length - @size, @size - 1).map { |x| @cells[x] }
+    diagonals = [main_diagonal, anti_diagonal]
+    diagonals.any? { |diagonal| diagonal.all? { |x| diagonal[1] == x && x != "-" }}
   end
-
 end
