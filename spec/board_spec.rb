@@ -120,3 +120,28 @@ RSpec.describe Board, '#column_winner?' do
     end
   end
 end
+
+RSpec.describe Board, '#diagonal_winner?' do
+  context 'When called and the board contains a winning diagonal' do
+    it 'returns true' do
+      size = 3
+      board = Board.new(size)
+      board.mark_cell(0, "X")
+      board.mark_cell(4, "X")
+      board.mark_cell(8, "X")
+      result = board.diagonal_winner?
+      expect(result).to eq true
+    end
+  end
+  context 'When called and the board does not contain a winning diagonal' do
+    it 'returns false' do
+      size = 3
+      board = Board.new(size)
+      board.mark_cell(0, "X")
+      board.mark_cell(1, "O")
+      board.mark_cell(2, "X")
+      result = board.diagonal_winner?
+      expect(result).to eq false
+    end
+  end
+end

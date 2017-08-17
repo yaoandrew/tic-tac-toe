@@ -30,4 +30,9 @@ class Board
     columns.any? { |column| column.all? { |x| column[0] == x && x != "-" }}
   end
 
+  def diagonal_winner?
+  #  diagonals = 0.step(@cells.length - 1, @size + 1 ).map { |x| @cells[x] }
+    #  need anti-diagonal
+  end
+
 end
