@@ -71,6 +71,35 @@ RSpec.describe Board, '#cell_open?' do
   end
 end
 
+RSpec.describe Board, '#rows' do
+  context 'When called' do
+    it 'returns the collection of rows' do
+      size = 3
+      board = Board.new(size)
+      board.mark_cell(0, "X")
+      board.mark_cell(1, "X")
+      board.mark_cell(2, "X")
+      row_collection = [["X","X","X"], ["-","-","-"], ["-","-","-"]] 
+      result = board.rows
+      expect(result).to eq row_collection
+    end
+  end
+end
+
+RSpec.describe Board, '#columns' do
+  context 'When called' do
+    it 'returns the collection of columns' do
+      size = 3
+      board = Board.new(size)
+      board.mark_cell(0, "X")
+      board.mark_cell(1, "X")
+      board.mark_cell(2, "X")
+      column_collection = [["X","-","-"], ["X","-","-"], ["X","-","-"]] 
+      result = board.columns
+      expect(result).to eq column_collection
+    end
+  end
+end
 RSpec.describe Board, '#row_winner?' do
   context 'When called and the board contains a winning row' do
     it 'returns true' do
