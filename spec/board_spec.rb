@@ -1,6 +1,6 @@
 require_relative '../lib/board'
 
-RSpec.describe Board, '#initialize' do
+describe Board, '#initialize' do
   context 'When the board is initialized with a size N' do
     it 'creates a N x N board' do
       size = 3
@@ -11,7 +11,7 @@ RSpec.describe Board, '#initialize' do
   end
 end
 
-RSpec.describe Board, '#display_cell' do
+describe Board, '#display_cell' do
   context 'When the board has been initialized' do
     it 'returns the contents of an empty cell' do
       size = 3
@@ -34,7 +34,7 @@ RSpec.describe Board, '#display_cell' do
   end
 end
 
-RSpec.describe Board, '#mark_cell' do
+describe Board, '#mark_cell' do
   context 'When called with a location and symbol' do
     it 'marks the board in the correct cell' do
       size = 3
@@ -48,7 +48,7 @@ RSpec.describe Board, '#mark_cell' do
   end
 end
 
-RSpec.describe Board, '#cell_open?' do
+describe Board, '#cell_open?' do
   context 'When called with a location of an unmarked cell' do
     it 'returns true' do
       size = 3
@@ -70,7 +70,7 @@ RSpec.describe Board, '#cell_open?' do
   end
 end
 
-RSpec.describe Board, '#rows' do
+describe Board, '#rows' do
   context 'When called' do
     it 'returns the collection of rows' do
       size = 3
@@ -86,7 +86,7 @@ RSpec.describe Board, '#rows' do
   end
 end
 
-RSpec.describe Board, '#columns' do
+describe Board, '#columns' do
   context 'When called' do
     it 'returns the collection of columns' do
       size = 3
@@ -101,7 +101,7 @@ RSpec.describe Board, '#columns' do
     end
   end
 end
-RSpec.describe Board, '#row_winner?' do
+describe Board, '#row_winner?' do
   context 'When called and the board contains a winning row' do
     it 'returns true' do
       size = 3
@@ -126,7 +126,7 @@ RSpec.describe Board, '#row_winner?' do
   end
 end
 
-RSpec.describe Board, '#column_winner?' do
+describe Board, '#column_winner?' do
   context 'When called and the board contains a winning column' do
     it 'returns true' do
       size = 3
@@ -151,7 +151,7 @@ RSpec.describe Board, '#column_winner?' do
   end
 end
 
-RSpec.describe Board, '#diagonal_winner?' do
+describe Board, '#diagonal_winner?' do
   context 'When called and the board contains a winning main diagonal' do
     it 'returns true' do
       size = 3
