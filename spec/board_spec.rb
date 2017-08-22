@@ -78,7 +78,8 @@ RSpec.describe Board, '#rows' do
       board.mark_cell(0, "X")
       board.mark_cell(1, "X")
       board.mark_cell(2, "X")
-      row_collection = [["X","X","X"], ["-","-","-"], ["-","-","-"]]
+      empty_row = [Board::EMPTY_CELL, Board::EMPTY_CELL, Board::EMPTY_CELL ]
+      row_collection = [["X","X","X"], empty_row, empty_row]
       result = board.rows
       expect(result).to eq row_collection
     end
@@ -90,10 +91,11 @@ RSpec.describe Board, '#columns' do
     it 'returns the collection of columns' do
       size = 3
       board = Board.new(size)
+      empty = Board::EMPTY_CELL
       board.mark_cell(0, "X")
       board.mark_cell(1, "X")
       board.mark_cell(2, "X")
-      column_collection = [["X","-","-"], ["X","-","-"], ["X","-","-"]]
+      column_collection = [["X",empty,empty], ["X",empty,empty], ["X",empty,empty]]
       result = board.columns
       expect(result).to eq column_collection
     end
