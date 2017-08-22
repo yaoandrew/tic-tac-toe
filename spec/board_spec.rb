@@ -16,10 +16,9 @@ RSpec.describe Board, '#display_cell' do
     it 'returns the contents of an empty cell' do
       size = 3
       board = Board.new(size)
-      empty_cell_token = "-"
       cell_num = 4
       result = board.display_cell(cell_num)
-      expect(result).to eq(empty_cell_token)
+      expect(result).to eq(Board::EMPTY_CELL)
     end
   end
   context 'When the board has been initialized' do
@@ -79,7 +78,7 @@ RSpec.describe Board, '#rows' do
       board.mark_cell(0, "X")
       board.mark_cell(1, "X")
       board.mark_cell(2, "X")
-      row_collection = [["X","X","X"], ["-","-","-"], ["-","-","-"]] 
+      row_collection = [["X","X","X"], ["-","-","-"], ["-","-","-"]]
       result = board.rows
       expect(result).to eq row_collection
     end
@@ -94,7 +93,7 @@ RSpec.describe Board, '#columns' do
       board.mark_cell(0, "X")
       board.mark_cell(1, "X")
       board.mark_cell(2, "X")
-      column_collection = [["X","-","-"], ["X","-","-"], ["X","-","-"]] 
+      column_collection = [["X","-","-"], ["X","-","-"], ["X","-","-"]]
       result = board.columns
       expect(result).to eq column_collection
     end
