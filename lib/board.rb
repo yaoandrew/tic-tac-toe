@@ -1,7 +1,10 @@
 class Board
+
+  EMPTY_CELL = '-'
+
   def initialize(size)
     @size = size
-    @cells = Array.new(size**2, "-")
+    @cells = Array.new(size**2, EMPTY_CELL)
   end
 
   def length
@@ -17,7 +20,7 @@ class Board
   end
 
   def cell_open?(cell)
-    @cells[cell] == '-'
+    @cells[cell] == EMPTY_CELL
   end
 
   def rows
@@ -37,15 +40,15 @@ class Board
   end
   
   def row_winner?
-    rows.any? { |row| row.all? { |x| row[0] == x && x != "-" }}
+    rows.any? { |row| row.all? { |x| row[0] == x && x != EMPTY_CELL }}
   end
 
   def column_winner?
-    columns.any? { |column| column.all? { |x| column[0] == x && x != "-" }}
+    columns.any? { |column| column.all? { |x| column[0] == x && x != EMPTY_CELL }}
   end
 
   def diagonal_winner?
     diagonals = [main_diagonal, anti_diagonal]
-    diagonals.any? { |diagonal| diagonal.all? { |x| diagonal[1] == x && x != "-" }}
+    diagonals.any? { |diagonal| diagonal.all? { |x| diagonal[1] == x && x != EMPTY_CELL }}
   end
 end
