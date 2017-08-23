@@ -38,7 +38,7 @@ class Board
   def anti_diagonal
     (@size - 1).step(@cells.length - @size, @size - 1).map { |x| @cells[x] }
   end
-  
+
   def row_winner?
     rows.any? { |row| row.all? { |x| row[0] == x && x != EMPTY_CELL }}
   end
