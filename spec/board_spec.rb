@@ -14,7 +14,7 @@ end
 
 describe Board, '#display_cell' do
   context 'When the board has been initialized' do
-    it 'returns the contents of an empty cell' do
+    it 'returns the contents of a cell' do
       board = Board.new(BOARD_SIZE)
       cell_num = 4
       result = board.display_cell(cell_num)
