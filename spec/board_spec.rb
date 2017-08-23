@@ -21,16 +21,6 @@ describe Board, '#display_cell' do
       expect(result).to eq(Board::EMPTY_CELL)
     end
   end
-  context 'When the board has been initialized' do
-    it 'returns the contents of a marked cell' do
-      board = Board.new(BOARD_SIZE)
-      cell_num = 4
-      symbol = "X"
-      board.mark_cell(cell_num, symbol)
-      result = board.display_cell(cell_num)
-      expect(result).to eq(symbol)
-    end
-  end
 end
 
 describe Board, '#mark_cell' do
