@@ -3,6 +3,7 @@ require_relative '../lib/board'
 BOARD_SIZE = 3
 
 describe Board, '#initialize' do
+
   context 'When the board is initialized with a size N' do
     it 'creates a N x N board' do
       board = Board.new(BOARD_SIZE)
@@ -13,6 +14,7 @@ describe Board, '#initialize' do
 end
 
 describe Board, '#display_cell' do
+
   context 'When the board has been initialized' do
     it 'returns the contents of a cell' do
       board = Board.new(BOARD_SIZE)
@@ -24,6 +26,7 @@ describe Board, '#display_cell' do
 end
 
 describe Board, '#mark_cell' do
+
   context 'When called with a location and symbol' do
     it 'marks the board in the correct cell' do
       board = Board.new(BOARD_SIZE)
@@ -37,6 +40,7 @@ describe Board, '#mark_cell' do
 end
 
 describe Board, '#cell_open?' do
+
   context 'When called with a location of an unmarked cell' do
     it 'returns true' do
       board = Board.new(BOARD_SIZE)
@@ -45,6 +49,7 @@ describe Board, '#cell_open?' do
       expect(result).to eq true
     end
   end
+
   context 'When called with a location of a marked cell' do
     it 'returns false' do
       board = Board.new(BOARD_SIZE)
@@ -57,6 +62,7 @@ describe Board, '#cell_open?' do
 end
 
 describe Board, '#rows' do
+
   context 'When called' do
     it 'returns the collection of rows' do
       board = Board.new(BOARD_SIZE)
@@ -72,6 +78,7 @@ describe Board, '#rows' do
 end
 
 describe Board, '#columns' do
+
   context 'When called' do
     it 'returns the collection of columns' do
       board = Board.new(BOARD_SIZE)
@@ -85,7 +92,9 @@ describe Board, '#columns' do
     end
   end
 end
+
 describe Board, '#row_winner?' do
+
   context 'When called and the board contains a winning row' do
     it 'returns true' do
       board = Board.new(BOARD_SIZE)
@@ -96,6 +105,7 @@ describe Board, '#row_winner?' do
       expect(result).to eq true
     end
   end
+
   context 'When called and the board does not contain a winning row' do
     it 'returns false' do
       board = Board.new(BOARD_SIZE)
@@ -109,6 +119,7 @@ describe Board, '#row_winner?' do
 end
 
 describe Board, '#column_winner?' do
+
   context 'When called and the board contains a winning column' do
     it 'returns true' do
       board = Board.new(BOARD_SIZE)
@@ -119,6 +130,7 @@ describe Board, '#column_winner?' do
       expect(result).to eq true
     end
   end
+
   context 'When called and the board does not contain a winning column' do
     it 'returns false' do
       board = Board.new(BOARD_SIZE)
@@ -132,6 +144,7 @@ describe Board, '#column_winner?' do
 end
 
 describe Board, '#diagonal_winner?' do
+
   context 'When called and the board contains a winning main diagonal' do
     it 'returns true' do
       board = Board.new(BOARD_SIZE)
@@ -142,6 +155,7 @@ describe Board, '#diagonal_winner?' do
       expect(result).to eq true
     end
   end
+
   context 'When called and the board contains a winning anti-diagonal' do
     it 'returns true' do
       board = Board.new(BOARD_SIZE)
@@ -152,6 +166,7 @@ describe Board, '#diagonal_winner?' do
       expect(result).to eq true
     end
   end
+
   context 'When called and the board does not contain a winning main diagonal' do
     it 'returns false' do
       board = Board.new(BOARD_SIZE)
@@ -162,6 +177,7 @@ describe Board, '#diagonal_winner?' do
       expect(result).to eq false
     end
   end
+
   context 'When called and the board does not contain a winning anti-diagonal' do
     it 'returns false' do
       board = Board.new(BOARD_SIZE)
