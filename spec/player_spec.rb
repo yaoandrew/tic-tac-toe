@@ -1,6 +1,7 @@
 require_relative '../lib/player'
 
-RSpec.describe Player, '#initialize' do
+describe Player, '#initialize' do
+
   context 'When the player is initialized' do
     it 'creates a player' do
       symbol = "X"
