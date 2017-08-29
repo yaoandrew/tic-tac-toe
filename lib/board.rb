@@ -51,4 +51,12 @@ class Board
     diagonals = [main_diagonal, anti_diagonal]
     diagonals.any? { |diagonal| diagonal.all? { |x| diagonal[1] == x && x != EMPTY_CELL }}
   end
+
+  def tied?
+    @cells.all? { |cell| cell != EMPTY_CELL } && !any_winner?
+  end
+
+  def any_winner?
+    row_winner? || column_winner? || diagonal_winner?
+  end
 end

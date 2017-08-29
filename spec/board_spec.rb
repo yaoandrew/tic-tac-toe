@@ -189,3 +189,70 @@ describe Board, '#diagonal_winner?' do
     end
   end
 end
+
+describe Board, 'tied?' do
+
+  context 'When called and the board is tied' do
+    it 'returns true' do
+      board = Board.new(BOARD_SIZE)
+      board.mark_cell(0, "O")
+      board.mark_cell(1, "X")
+      board.mark_cell(2, "O")
+      board.mark_cell(3, "X")
+      board.mark_cell(4, "X")
+      board.mark_cell(5, "O")
+      board.mark_cell(6, "X")
+      board.mark_cell(7, "O")
+      board.mark_cell(8, "X")
+      result = board.tied?
+      expect(result).to eq true
+    end
+  end
+
+  context 'When called and the board is not tied' do
+    it 'returns false' do
+      board = Board.new(BOARD_SIZE)
+      board.mark_cell(0, "O")
+      board.mark_cell(1, "X")
+      board.mark_cell(2, "O")
+      board.mark_cell(3, "X")
+      board.mark_cell(4, "X")
+      board.mark_cell(5, "O")
+      board.mark_cell(6, "X")
+      board.mark_cell(7, "X")
+      result = board.tied?
+      expect(result).to eq false
+    end
+  end
+end
+
+describe Board, 'any_winner?' do
+
+  context 'When called and the board contains a winning combo' do
+    it 'returns true' do
+      board = Board.new(BOARD_SIZE)
+      board.mark_cell(0, "X")
+      board.mark_cell(1, "X")
+      board.mark_cell(2, "X")
+      result = board.any_winner?
+      expect(result).to eq true
+    end
+  end
+
+  context 'When called and the board does not contain a winning combo' do
+    it 'returns false' do
+      board = Board.new(BOARD_SIZE)
+      board.mark_cell(0, "O")
+      board.mark_cell(1, "X")
+      board.mark_cell(2, "O")
+      board.mark_cell(3, "X")
+      board.mark_cell(4, "X")
+      board.mark_cell(5, "O")
+      board.mark_cell(6, "X")
+      board.mark_cell(7, "O")
+      board.mark_cell(8, "X")
+      result = board.any_winner?
+      expect(result).to eq false
+    end
+  end
+end
