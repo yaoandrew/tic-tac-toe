@@ -23,6 +23,7 @@ describe Game, '#new_game' do
 end
 
 describe Game, '#game_over?' do
+
   context 'When there is a winner' do
     it 'Should return true' do
       player1 = Player.new('X', :human, 1)

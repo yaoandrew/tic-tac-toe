@@ -4,7 +4,7 @@ describe HumanPlayer, '#make_move' do
 
   context 'When the player is asked' do
     it 'prompts the human for a move' do
-      symbol = "X"
+      symbol = 'X'
       type = :human
       order = 1
       human_player = HumanPlayer.new(symbol, type, order)

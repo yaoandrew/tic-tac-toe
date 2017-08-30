@@ -3,7 +3,7 @@ require_relative '../lib/player'
 describe Player, '#make_move' do
   context 'When the player is asked' do
     it 'makes a move' do
-      symbol = "X"
+      symbol = 'X'
       type = :human
       order = 1
       player = Player.new(symbol, type, order)
