@@ -39,6 +39,10 @@ class Board
     (@size - 1).step(@cells.length - @size, @size - 1).map { |x| @cells[x] }
   end
 
+  def diagonals
+    [main_diagonal, anti_diagonal]
+  end
+
   def row_winner?
     rows.any? { |row| row.all? { |x| row[0] == x && x != EMPTY_CELL }}
   end
@@ -48,7 +52,6 @@ class Board
   end
 
   def diagonal_winner?
-    diagonals = [main_diagonal, anti_diagonal]
     diagonals.any? { |diagonal| diagonal.all? { |x| diagonal[1] == x && x != EMPTY_CELL }}
   end
 
@@ -61,11 +64,13 @@ class Board
   end
 
   def who_won
-   case
-   when row_winner?
-
-   when column_winner?
-   when diagonal_winner?
-   end
+    if column_winner?
+      columns.find { |column| column.all? { |x| column[0] == x } }.first
+    elsif row_winner?
+      rows.find { |row| row.all? { |x| row[0] == x } }.first
+    elsif diagonal_winner?
+      puts "d"
+      diagonals.find { |diagonal| diagonal.all? { |x| diagonal[0] == x } }.first
+    end
   end
 end

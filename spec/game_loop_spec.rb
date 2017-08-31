@@ -74,7 +74,7 @@ end
 
 describe Game, '#winner' do
 
-  context 'When the winner is X' do
+  context 'When the winner is a column winner' do
     it 'returns the mark of the winner- X' do
       player1 = Player.new('X', :human, 1)
       player2 = Player.new('O', :computer, 2)
@@ -91,24 +91,24 @@ describe Game, '#winner' do
     end
   end
 
-  context 'When the winner is O' do
+  context 'When the winner is a row winner' do
     it 'returns the mark of the winner- O' do
       player1 = Player.new('X', :human, 1)
       player2 = Player.new('O', :computer, 2)
       board = Board.new(BOARD_SIZE)
       game = Game.new(player1, player2, board)
-      board.mark_cell(1, 'X')
+      board.mark_cell(0, 'O')
       board.mark_cell(1, 'O')
-      board.mark_cell(2, 'X')
-      board.mark_cell(4, 'O')
+      board.mark_cell(2, 'O')
+      board.mark_cell(4, 'X')
       board.mark_cell(6, 'X')
-      board.mark_cell(7, 'O')
+      board.mark_cell(7, 'X')
       result = game.winner
       expect(result).to eq('O')
     end
   end
 
-  xcontext 'When there is not a winner' do
+  context 'When there is not a winner' do
     it 'returns nil' do
       player1 = Player.new('X', :human, 1)
       player2 = Player.new('O', :computer, 2)

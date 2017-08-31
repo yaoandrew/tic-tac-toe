@@ -24,5 +24,4 @@ class Game
   def winner
     @board.who_won
   end
-
 end
