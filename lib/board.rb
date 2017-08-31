@@ -63,6 +63,9 @@ class Board
   def who_won
    case
    when row_winner?
+
+   when column_winner?
+   when diagonal_winner?
    end
   end
 end
