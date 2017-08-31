@@ -17,7 +17,12 @@ class Game
   end
 
   def game_over?
-    @board.row_winner? || @board.column_winner? || @board.diagonal_winner? || @board.tied?
+    @board.row_winner? || @board.column_winner? ||
+      @board.diagonal_winner? || @board.tied?
+  end
+
+  def winner
+    @board.who_won
   end
 
 end
