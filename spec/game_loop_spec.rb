@@ -24,6 +24,20 @@ describe Game, '#new_game' do
   end
 end
 
+describe Game, '#toggle_player' do
+
+  context 'When the current player is player2' do
+    it 'Should make current player - player1' do
+      player1 = Player.new('X', :human, 2)
+      player2 = Player.new('O', :computer, 1)
+      board = Board.new(BOARD_SIZE)
+      game = Game.new(player1, player2, board)
+      game.toggle_player
+      expect(game.current_player).to eq player1
+    end
+  end
+end
+
 describe Game, '#game_over?' do
 
   context 'When there is a winner' do
@@ -105,6 +119,22 @@ describe Game, '#winner' do
       board.mark_cell(7, 'X')
       result = game.winner
       expect(result).to eq('O')
+    end
+  end
+
+  context 'When the winner is a diagonal winner' do
+    it 'returns the mark of the winner- X' do
+      player1 = Player.new('X', :human, 1)
+      player2 = Player.new('O', :computer, 2)
+      board = Board.new(BOARD_SIZE)
+      game = Game.new(player1, player2, board)
+      board.mark_cell(0, 'X')
+      board.mark_cell(1, 'O')
+      board.mark_cell(2, 'O')
+      board.mark_cell(4, 'X')
+      board.mark_cell(8, 'X')
+      result = game.winner
+      expect(result).to eq('X')
     end
   end
 

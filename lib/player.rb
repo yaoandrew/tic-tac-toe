@@ -1,6 +1,6 @@
 class Player
 
-  attr_reader :symbol, :type, :order
+  attr_accessor :symbol, :type, :order
 
   def initialize(symbol, type, order)
     @symbol = symbol
@@ -11,4 +11,5 @@ class Player
   def make_move
     3
   end
+
 end

@@ -1,5 +1,7 @@
 class UserInterface
 
+  attr_reader :mark, :order, :move
+
   def draw_board(board)
     puts board.display_cell(0) + " | " + board.display_cell(1) + " | " + board.display_cell(2)
     puts "---------"
@@ -16,15 +18,22 @@ class UserInterface
     puts "6 | 7 | 8"
   end
 
+  def welcome
+    puts "Let's play tic tac toe"
+  end
+
   def prompt_user_to_choose_mark
     puts "Please select X or O"
+    @mark = gets.chomp
   end
 
   def prompt_user_to_choose_order
     puts "Do you want to go first (y/n)?"
+    @order = gets.chomp
   end
 
   def prompt_player_move
-    puts "Please choose your next move"
+    puts "Please make your move"
+    @move = gets.chomp
   end
 end

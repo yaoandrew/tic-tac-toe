@@ -190,7 +190,7 @@ describe Board, '#diagonal_winner?' do
   end
 end
 
-describe Board, 'tied?' do
+describe Board, '#tied?' do
 
   context 'When called and the board is tied' do
     it 'returns true' do
@@ -226,7 +226,7 @@ describe Board, 'tied?' do
   end
 end
 
-describe Board, 'any_winner?' do
+describe Board, '#any_winner?' do
 
   context 'When called and the board contains a winning combo' do
     it 'returns true' do

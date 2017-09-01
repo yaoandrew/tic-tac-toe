@@ -69,7 +69,6 @@ class Board
     elsif row_winner?
       rows.find { |row| row.all? { |x| row[0] == x } }.first
     elsif diagonal_winner?
-      puts "d"
       diagonals.find { |diagonal| diagonal.all? { |x| diagonal[0] == x } }.first
     end
   end
