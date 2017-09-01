@@ -14,3 +14,4 @@ be found in the `spec/` folder.
 This project uses rSpec (3.6.0) for unit testing and was built with Ruby (2.4.1). You can run the tests by running `rspec` from the project root. rSpec is setup to run with both `--color` and `--format documentation` options set.
 
 ## Starting the game
+You can start the game by running `lib/ttt.rb`
