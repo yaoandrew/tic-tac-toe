@@ -32,6 +32,7 @@ describe Game, '#toggle_player' do
       player2 = Player.new('O', :computer, 1)
       board = Board.new(BOARD_SIZE)
       game = Game.new(player1, player2, board)
+      game.first_player
       game.toggle_player
       expect(game.current_player).to eq player1
     end

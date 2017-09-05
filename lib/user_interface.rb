@@ -22,17 +22,25 @@ class UserInterface
     puts "Let's play tic tac toe"
   end
 
-  def prompt_user_to_choose_mark
+  def prompt_user_for_game_type
+    puts "Please choose a game type:"
+    puts "1) Human vs. Human"
+    puts "2) Human vs. Computer"
+    puts "3) Computer vs. Computer"
+    @game_type = gets.chomp
+  end
+
+  def prompt_user_for_mark
     puts "Please select X or O"
     @mark = gets.chomp
   end
 
-  def prompt_user_to_choose_order
+  def prompt_user_for_order
     puts "Do you want to go first (y/n)?"
     @order = gets.chomp
   end
 
-  def prompt_player_move
+  def prompt_player_for_move
     puts "Please make your move"
     @move = gets.chomp
   end
