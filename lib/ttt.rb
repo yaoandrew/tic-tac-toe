@@ -30,4 +30,4 @@ until game.game_over? do
   game.toggle_player
 end
 
-puts "#{game.winner} has won the game!"
+ui.show_winner(board, game)

@@ -44,4 +44,12 @@ class UserInterface
     puts "Please make your move"
     @move = gets.chomp
   end
+
+  def show_winner(board, game)
+    if board.tied?
+      puts "Cat's game!!"
+    else
+      puts "#{game.winner} has won the game!"
+    end
+  end
 end
