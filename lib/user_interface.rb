@@ -35,11 +35,6 @@ class UserInterface
     @mark = gets.chomp
   end
 
-  def prompt_user_for_order
-    puts "Do you want to go first (y/n)?"
-    @order = gets.chomp
-  end
-
   def prompt_player_for_move
     puts "Please make your move"
     @move = gets.chomp

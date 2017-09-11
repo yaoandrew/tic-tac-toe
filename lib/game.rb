@@ -9,14 +9,6 @@ class Game
     @current_player = player1
   end
 
-  def first_player
-    if @player1.order == 1
-      @current_player = @player1
-    else
-      @current_player = @player2
-    end
-  end
-
   def toggle_player
     @current_player == @player1 ? @current_player = @player2 : @current_player = @player1
   end
