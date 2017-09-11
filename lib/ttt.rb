@@ -11,10 +11,23 @@ ui.welcome
 ui.prompt_user_for_game_type
 ui.draw_board_map
 
-board = Board.new(3)
-player1 = Player.new('X')
-player2 = Player.new('O')
-game = Game.new(player1, player2, board)
+case ui.game_type.to_i
+when 1
+  board = Board.new(3)
+  player1 = Player.new('X')
+  player2 = Player.new('O')
+  game = Game.new(player1, player2, board)
+when 2
+  board = Board.new(3)
+  player1 = Player.new('X')
+  player2 = Computer.new('O')
+  game = Game.new(player1, player2, board)
+when 3
+  board = Board.new(3)
+  player1 = Computer.new('X')
+  player2 = Computer.new('O')
+  game = Game.new(player1, player2, board)
+end
 
 until game.game_over? do
   puts "Its time for #{game.current_player.symbol} to go"
@@ -27,3 +40,4 @@ until game.game_over? do
 end
 
 ui.show_winner(board, game)
+

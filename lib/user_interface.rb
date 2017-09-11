@@ -1,6 +1,6 @@
 class UserInterface
 
-  attr_reader :mark, :order, :move
+  attr_reader :mark, :move, :game_type
 
   def draw_board(board)
     puts board.display_cell(0) + " | " + board.display_cell(1) + " | " + board.display_cell(2)
