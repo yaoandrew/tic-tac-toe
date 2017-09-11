@@ -61,6 +61,21 @@ describe Board, '#cell_open?' do
   end
 end
 
+describe Board, '#empty_cells' do
+
+  context 'When called' do
+    it 'returns a collection of empty cells' do
+      board = Board.new(BOARD_SIZE)
+      board.mark_cell(0, 'X')
+      board.mark_cell(1, 'O')
+      board.mark_cell(2, 'X')
+      empty_cells = [3, 4, 5, 6, 7, 8]
+      result = board.empty_cells
+      expect(result).to eq empty_cells
+    end
+  end
+end
+
 describe Board, '#rows' do
 
   context 'When called' do
