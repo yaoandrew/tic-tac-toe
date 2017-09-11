@@ -23,6 +23,10 @@ class Board
     @cells[cell] == EMPTY_CELL
   end
 
+  def empty_cells
+    @cells.each_index.select { |index| @cells[index] == '-' }
+  end
+
   def rows
     @cells.each_slice(@size).to_a
   end
