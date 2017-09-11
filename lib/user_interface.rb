@@ -11,6 +11,7 @@ class UserInterface
   end
 
   def draw_board_map
+    puts "Choose your move by picking the number that corresponds with the space you want."
     puts "0 | 1 | 2"
     puts "---------"
     puts "3 | 4 | 5"
