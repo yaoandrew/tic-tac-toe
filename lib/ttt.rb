@@ -3,6 +3,7 @@
 require_relative 'user_interface'
 require_relative 'game'
 require_relative 'player'
+require_relative 'computer'
 require_relative 'board'
 
 ui = UserInterface.new
@@ -30,14 +31,24 @@ when 3
 end
 
 until game.game_over? do
-  puts "Its time for #{game.current_player.symbol} to go"
-  ui.prompt_player_for_move
-  puts "#{game.current_player.symbol} has chosen"
-  puts "Your move is #{ui.move}"
-  board.mark_cell(ui.move.to_i, game.current_player.symbol)
-  ui.draw_board(board)
+
+  if game.current_player.is_a?(Player)
+    puts "Its time for #{game.current_player.symbol} to go"
+    ui.prompt_player_for_move
+    puts "#{game.current_player.symbol} has chosen"
+    puts "Your move is #{ui.move}"
+    board.mark_cell(ui.move.to_i, game.current_player.symbol)
+    ui.draw_board(board)
+  end
+
+  if game.current_player.is_a?(Computer)
+    puts "The computer is thinking..."
+    board.mark_cell(game.current_player.make_simple_move(board), game.current_player.symbol)
+    ui.draw_board(board)
+  end
+
   game.toggle_player
+
 end
 
 ui.show_winner(board, game)
-
