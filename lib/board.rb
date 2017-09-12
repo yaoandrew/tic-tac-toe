@@ -76,4 +76,13 @@ class Board
       diagonals.find { |diagonal| diagonal.all? { |x| diagonal[0] == x } }.first
     end
   end
+
+  def toggle_player_turn
+    if empty_cells.length.even?
+      return "O"
+    else
+      return "X"
+    end
+  end
+
 end
