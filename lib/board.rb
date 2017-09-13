@@ -2,9 +2,11 @@ class Board
 
   EMPTY_CELL = '-'
 
-  def initialize(size)
+  attr_accessor :cells
+
+  def initialize(size, cells=nil)
     @size = size
-    @cells = Array.new(size**2, EMPTY_CELL)
+    @cells = cells || Array.new(size**2, EMPTY_CELL)
   end
 
   def length
@@ -16,7 +18,9 @@ class Board
   end
 
   def mark_cell(cell, symbol)
+    board = Board.new(@size, @cells.dup)
     @cells[cell] = symbol
+    board
   end
 
   def cell_open?(cell)

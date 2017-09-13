@@ -8,51 +8,20 @@ class Computer
 
   def make_simple_move(board)
     simple_move = rand(0..8)
-    until board.cell_open?(move)
+    until board.cell_open?(simple_move)
       simple_move = rand(0..8)
     end
     simple_move
   end
 
-  def make_smart_move(board, depth=0, best_score={})
+  def minimax(board)
+    return 100 if board.who_won == "O"
+    return -100 if board.who_won == "X"
     return 0 if board.tied?
-    return -1 if board.tied? || board.any_winner?
 
-    board.empty_cells.each do |cell|
-      board.mark_cell(cell, board.toggle_player_turn)
-      best_score[cell] = -1 * make_smart_move(board, depth+1, {})
-      board.empty_cells[cell] = cell.to_i
-
-
-      draw_board(board)
-
-    end
-
-    5
-
-
-
-
-    #return 0 if board.tied?
-    #return -1 if board.tied? || board.any_winner?
-
-    #board.empty_cells.each do |cell|
-      #board.mark_cell(cell, board.toggle_player_turn)
-
-      #best_score[cell] = -1 * make_smart_move(board, depth+1, {})
-      #board.empty_cells[cell] = cell.to_i
-    #end
-
-    #smart_move = best_score.max_by { |key, value| value }[0]
-    #high_minimax_score = best_score.max_by { |key, value| value }[1]
-
-    #if depth == 0
-      #return smart_move
-    #elsif depth > 0
-      #return high_minimax_score
-    #end
   end
 
+  # use for debugging and remove
   def draw_board(board)
     puts "=========="
     puts "=========="
