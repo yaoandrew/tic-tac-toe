@@ -4,14 +4,15 @@ BOARD_SIZE = 3
 
 describe Board, '#initialize' do
 
+  board = Board.new(BOARD_SIZE)
+
   context 'When the board is initialized with a size N' do
     it 'creates a N x N board' do
-      board = Board.new(BOARD_SIZE)
       result = board.length
       expect(result).to eq 9
     end
     it 'returns X as the current player' do
-      board = Board.new(BOARD_SIZE)
+      #board = Board.new(BOARD_SIZE)
       expect(board.turn).to eq('X')
     end
   end
@@ -31,7 +32,7 @@ end
 
 describe Board, '#mark_cell' do
 
-  context 'When called with a location and symbol' do
+  context 'When called with an index location' do
     it 'marks the board in the correct cell' do
       board = Board.new(BOARD_SIZE)
       cell = 4
@@ -39,6 +40,16 @@ describe Board, '#mark_cell' do
       board.mark_cell(cell)
       result = board.display_cell(cell)
       expect(result).to eq(symbol)
+    end
+  end
+
+  context 'When called twice it with an index' do
+    it 'marks the board with alternating marks' do
+      board = Board.new(BOARD_SIZE)
+      board.mark_cell(0)
+      board.mark_cell(1)
+      result = board.display_cell(1)
+      expect(result).to eq('O')
     end
   end
 end
