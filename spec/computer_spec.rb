@@ -6,10 +6,10 @@ describe Computer, '#make_simple_move' do
     it 'makes a simple move' do
       symbol = 'O'
       computer = Computer.new(symbol)
-     board = Board.new(3)
-      board.mark_cell(0, 'X')
-      board.mark_cell(1, 'X')
-      board.mark_cell(2, 'X')
+      board = Board.new(3)
+      board.cells = %w( X X X
+                        - - -
+                        - - - )
       result = computer.make_simple_move(board)
       expect(result).to be > 2
     end
@@ -22,9 +22,9 @@ describe Computer, '#minimax' do
       symbol = 'O'
       computer = Computer.new(symbol)
       board = Board.new(3)
-      board.mark_cell(0, 'O')
-      board.mark_cell(1, 'O')
-      board.mark_cell(2, 'O')
+      board.cells = %w( O O O
+                        - - -
+                        - - - )
       result = computer.minimax(board)
       expect(result).to eq 100
     end
@@ -34,7 +34,9 @@ describe Computer, '#minimax' do
       symbol = 'O'
       computer = Computer.new(symbol)
       board = Board.new(3)
-      board.cells = %w( X X X - - - - - -)
+      board.cells = %w( X X X
+                        - - -
+                        - - - )
       result = computer.minimax(board)
       expect(result).to eq (-100)
     end
@@ -44,17 +46,21 @@ describe Computer, '#minimax' do
       symbol = 'O'
       computer = Computer.new(symbol)
       board = Board.new(3)
-      board.cells = %w( X O O O X X X X O)
+      board.cells = %w( X O O
+                        O X X
+                        X X O )
       result = computer.minimax(board)
       expect(result).to eq 0
     end
   end
-  context 'When minimax is called with a near end state' do
+  xcontext 'When minimax is called with a near end state' do
     it 'returns -99 if X can with in the next move' do
       symbol = 'O'
       computer = Computer.new(symbol)
       board = Board.new(3)
-      board.cells = %w( X X - - - - - - -)
+      board.cells = %w( X X -
+                        - - -
+                        - - - )
       result = computer.minimax(board)
       expect(result).to eq (-99)
     end

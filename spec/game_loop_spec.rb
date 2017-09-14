@@ -25,9 +25,9 @@ describe Game, '#game_over?' do
       player2 = Player.new('O')
       board = Board.new(BOARD_SIZE)
       game = Game.new(player1, player2, board)
-      board.mark_cell(0, 'X')
-      board.mark_cell(1, 'X')
-      board.mark_cell(2, 'X')
+      board.cells = %w( X X X
+                        - - -
+                        - - - )
       expect(game.game_over?).to be true
     end
   end
@@ -38,15 +38,9 @@ describe Game, '#game_over?' do
       player2 = Player.new('O')
       board = Board.new(BOARD_SIZE)
       game = Game.new(player1, player2, board)
-      board.mark_cell(0, 'O')
-      board.mark_cell(1, 'X')
-      board.mark_cell(2, 'O')
-      board.mark_cell(3, 'X')
-      board.mark_cell(4, 'X')
-      board.mark_cell(5, 'O')
-      board.mark_cell(6, 'X')
-      board.mark_cell(7, 'O')
-      board.mark_cell(8, 'X')
+      board.cells = %w( O X O
+                        X X O
+                        X O X )
       expect(game.game_over?).to be true
     end
   end
@@ -57,9 +51,9 @@ describe Game, '#game_over?' do
       player2 = Player.new('O')
       board = Board.new(BOARD_SIZE)
       game = Game.new(player1, player2, board)
-      board.mark_cell(0, 'O')
-      board.mark_cell(1, 'X')
-      board.mark_cell(2, 'O')
+      board.cells = %w( O X O
+                        - - -
+                        - - - )
       expect(game.game_over?).to be false
     end
   end
@@ -73,12 +67,9 @@ describe Game, '#winner' do
       player2 = Player.new('O')
       board = Board.new(BOARD_SIZE)
       game = Game.new(player1, player2, board)
-      board.mark_cell(0, 'O')
-      board.mark_cell(1, 'X')
-      board.mark_cell(2, 'O')
-      board.mark_cell(4, 'X')
-      board.mark_cell(6, 'O')
-      board.mark_cell(7, 'X')
+      board.cells = %w( O X O
+                        - X -
+                        O X - )
       result = game.winner
       expect(result).to eq('X')
     end
@@ -90,12 +81,9 @@ describe Game, '#winner' do
       player2 = Player.new('O')
       board = Board.new(BOARD_SIZE)
       game = Game.new(player1, player2, board)
-      board.mark_cell(0, 'O')
-      board.mark_cell(1, 'O')
-      board.mark_cell(2, 'O')
-      board.mark_cell(4, 'X')
-      board.mark_cell(6, 'X')
-      board.mark_cell(7, 'X')
+      board.cells = %w( O O O
+                        - X -
+                        X X - )
       result = game.winner
       expect(result).to eq('O')
     end
@@ -107,11 +95,9 @@ describe Game, '#winner' do
       player2 = Player.new('O')
       board = Board.new(BOARD_SIZE)
       game = Game.new(player1, player2, board)
-      board.mark_cell(0, 'X')
-      board.mark_cell(1, 'O')
-      board.mark_cell(2, 'O')
-      board.mark_cell(4, 'X')
-      board.mark_cell(8, 'X')
+      board.cells = %w( X O -
+                        O X -
+                        - O X )
       result = game.winner
       expect(result).to eq('X')
     end
@@ -123,9 +109,9 @@ describe Game, '#winner' do
       player2 = Player.new('O')
       board = Board.new(BOARD_SIZE)
       game = Game.new(player1, player2, board)
-      board.mark_cell(0, 'O')
-      board.mark_cell(1, 'X')
-      board.mark_cell(2, 'O')
+      board.cells = %w( O X O
+                        - - -
+                        - - - )
       result = game.winner
       expect(result).to be nil
     end

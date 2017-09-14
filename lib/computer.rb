@@ -20,7 +20,7 @@ class Computer
     return 0 if board.tied?
 
     board.empty_cells.map do |empty_cell|
-      newboard = board.mark_cell(empty_cell, "X")
+      newboard = board.mark_cell(empty_cell)
       minimax(newboard)
     end
   end
