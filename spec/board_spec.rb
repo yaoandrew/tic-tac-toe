@@ -273,3 +273,39 @@ describe Board, '#any_winner?' do
     end
   end
 end
+
+describe Board, '#minimax' do
+
+  context 'When minimax is called with an end state board' do
+    it 'returns 100 if O is the winner' do
+      board = Board.new(3)
+      board.cells = %w( O O O
+                        - - -
+                        - - - )
+      result = board.minimax
+      expect(result).to eq 100
+    end
+  end
+ 
+  context 'When minimax is called with an end state board' do
+    it 'returns -100 if X is the winner' do
+      board = Board.new(3)
+      board.cells = %w( X X X
+                        - - -
+                        - - - )
+      result = board.minimax
+      expect(result).to eq (-100)
+    end
+  end
+
+  context 'When minimax is called with an end state board' do
+    it 'returns 0 if the board is tied' do
+      board = Board.new(3)
+      board.cells = %w( X O O
+                        O X X
+                        X X O )
+      result = board.minimax
+      expect(result).to eq 0
+    end
+  end
+end

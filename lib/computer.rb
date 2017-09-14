@@ -14,18 +14,6 @@ class Computer
     simple_move
   end
 
-  def minimax(board)
-    return 100 if board.who_won == "O"
-    return -100 if board.who_won == "X"
-    return 0 if board.tied?
-
-    board.empty_cells.map do |empty_cell|
-      newboard = board.mark_cell(empty_cell)
-      minimax(newboard)
-    end
-  end
-
-  # use for debugging and remove
   def draw_board(board)
     puts "=========="
     puts "=========="

@@ -90,4 +90,10 @@ class Board
     end
   end
 
+  def minimax
+    return 100 if who_won == "O"
+    return -100 if who_won == "X"
+    return 0 if tied?
+  end
+
 end
