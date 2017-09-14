@@ -19,6 +19,10 @@ class Computer
     return -100 if board.who_won == "X"
     return 0 if board.tied?
 
+    board.empty_cells.map do |empty_cell|
+      newboard = board.mark_cell(empty_cell, "X")
+      minimax(newboard)
+    end
   end
 
   # use for debugging and remove

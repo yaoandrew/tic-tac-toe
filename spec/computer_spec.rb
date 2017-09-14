@@ -49,8 +49,8 @@ describe Computer, '#minimax' do
       expect(result).to eq 0
     end
   end
-  xcontext 'When minimax is called with a near end state' do
-    it 'returns 0 if the board is tied' do
+  context 'When minimax is called with a near end state' do
+    it 'returns -99 when X is the winner' do
       symbol = 'O'
       computer = Computer.new(symbol)
       board = Board.new(3)
