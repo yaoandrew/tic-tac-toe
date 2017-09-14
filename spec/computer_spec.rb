@@ -6,7 +6,7 @@ describe Computer, '#make_simple_move' do
     it 'makes a simple move' do
       symbol = 'O'
       computer = Computer.new(symbol)
-      board = Board.new(3)
+     board = Board.new(3)
       board.mark_cell(0, 'X')
       board.mark_cell(1, 'X')
       board.mark_cell(2, 'X')
@@ -50,7 +50,7 @@ describe Computer, '#minimax' do
     end
   end
   context 'When minimax is called with a near end state' do
-    it 'returns -99 when X is the winner' do
+    it 'returns -99 if X can with in the next move' do
       symbol = 'O'
       computer = Computer.new(symbol)
       board = Board.new(3)

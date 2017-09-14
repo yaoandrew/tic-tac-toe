@@ -2,11 +2,12 @@ class Board
 
   EMPTY_CELL = '-'
 
-  attr_accessor :cells
+  attr_accessor :cells, :turn
 
   def initialize(size, cells=nil)
     @size = size
     @cells = cells || Array.new(size**2, EMPTY_CELL)
+    @turn = "X"
   end
 
   def length
@@ -17,9 +18,9 @@ class Board
     @cells[cell]
   end
 
-  def mark_cell(cell, symbol)
+  def mark_cell(cell)
     board = Board.new(@size, @cells.dup)
-    @cells[cell] = symbol
+    @cells[cell] = toggle_player_turn
     board
   end
 

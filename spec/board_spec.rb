@@ -10,6 +10,10 @@ describe Board, '#initialize' do
       result = board.length
       expect(result).to eq 9
     end
+    it 'returns X as the current player' do
+      board = Board.new(BOARD_SIZE)
+      expect(board.turn).to eq('X')
+    end
   end
 end
 
@@ -32,7 +36,7 @@ describe Board, '#mark_cell' do
       board = Board.new(BOARD_SIZE)
       cell = 4
       symbol = 'X'
-      board.mark_cell(cell, symbol)
+      board.mark_cell(cell)
       result = board.display_cell(cell)
       expect(result).to eq(symbol)
     end
@@ -54,7 +58,7 @@ describe Board, '#cell_open?' do
     it 'returns false' do
       board = Board.new(BOARD_SIZE)
       cell = 4
-      board.mark_cell(cell, 'X')
+      board.mark_cell(cell)
       result = board.cell_open?(cell)
       expect(result).to eq false
     end
@@ -149,9 +153,9 @@ describe Board, '#diagonal_winner?' do
   context 'When called and the board contains a winning main diagonal' do
     it 'returns true' do
       board = Board.new(BOARD_SIZE)
-      board.mark_cell(0, 'O')
-      board.mark_cell(4, 'O')
-      board.mark_cell(8, 'O')
+      board.cells = %w(O - -
+                       - O -
+                       - - O)
       result = board.diagonal_winner?
       expect(result).to eq true
     end
@@ -160,9 +164,9 @@ describe Board, '#diagonal_winner?' do
   context 'When called and the board contains a winning anti-diagonal' do
     it 'returns true' do
       board = Board.new(BOARD_SIZE)
-      board.mark_cell(2, 'X')
-      board.mark_cell(4, 'X')
-      board.mark_cell(6, 'X')
+      board.cells = %w(- - X
+                       - X -
+                       X - -)
       result = board.diagonal_winner?
       expect(result).to eq true
     end
@@ -171,9 +175,9 @@ describe Board, '#diagonal_winner?' do
   context 'When called and the board does not contain a winning main diagonal' do
     it 'returns false' do
       board = Board.new(BOARD_SIZE)
-      board.mark_cell(0, 'O')
-      board.mark_cell(1, 'O')
-      board.mark_cell(2, 'O')
+      board.cells = %w(O O O
+                       - - -
+                       - - -)
       result = board.diagonal_winner?
       expect(result).to eq false
     end
@@ -182,9 +186,10 @@ describe Board, '#diagonal_winner?' do
   context 'When called and the board does not contain a winning anti-diagonal' do
     it 'returns false' do
       board = Board.new(BOARD_SIZE)
-      board.mark_cell(6, 'X')
-      board.mark_cell(7, 'X')
-      board.mark_cell(8, 'X')
+      board.cells = %w(- - -
+                       - - -
+                       X X X)
+
       result = board.diagonal_winner?
       expect(result).to eq false
     end
@@ -196,15 +201,10 @@ describe Board, '#tied?' do
   context 'When called and the board is tied' do
     it 'returns true' do
       board = Board.new(BOARD_SIZE)
-      board.mark_cell(0, 'O')
-      board.mark_cell(1, 'X')
-      board.mark_cell(2, 'O')
-      board.mark_cell(3, 'X')
-      board.mark_cell(4, 'X')
-      board.mark_cell(5, 'O')
-      board.mark_cell(6, 'X')
-      board.mark_cell(7, 'O')
-      board.mark_cell(8, 'X')
+      board.cells = %w(O X O
+                       X X O
+                       X O X)
+
       result = board.tied?
       expect(result).to eq true
     end
@@ -213,14 +213,10 @@ describe Board, '#tied?' do
   context 'When called and the board is not tied' do
     it 'returns false' do
       board = Board.new(BOARD_SIZE)
-      board.mark_cell(0, 'O')
-      board.mark_cell(1, 'X')
-      board.mark_cell(2, 'O')
-      board.mark_cell(3, 'X')
-      board.mark_cell(4, 'X')
-      board.mark_cell(5, 'O')
-      board.mark_cell(6, 'X')
-      board.mark_cell(7, 'X')
+      board.cells = %w(O X O
+                       X X O
+                       X X -)
+
       result = board.tied?
       expect(result).to eq false
     end
@@ -232,9 +228,10 @@ describe Board, '#any_winner?' do
   context 'When called and the board contains a winning combo' do
     it 'returns true' do
       board = Board.new(BOARD_SIZE)
-      board.mark_cell(0, 'X')
-      board.mark_cell(1, 'X')
-      board.mark_cell(2, 'X')
+      board.cells = %w(X X X
+                       - - -
+                       - - -)
+
       result = board.any_winner?
       expect(result).to eq true
     end
@@ -243,15 +240,9 @@ describe Board, '#any_winner?' do
   context 'When called and the board does not contain a winning combo' do
     it 'returns false' do
       board = Board.new(BOARD_SIZE)
-      board.mark_cell(0, 'O')
-      board.mark_cell(1, 'X')
-      board.mark_cell(2, 'O')
-      board.mark_cell(3, 'X')
-      board.mark_cell(4, 'X')
-      board.mark_cell(5, 'O')
-      board.mark_cell(6, 'X')
-      board.mark_cell(7, 'O')
-      board.mark_cell(8, 'X')
+      board.cells = %w(O X O
+                       X X O
+                       X O X)
       result = board.any_winner?
       expect(result).to eq false
     end
