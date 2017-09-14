@@ -37,13 +37,13 @@ until game.game_over? do
     ui.prompt_player_for_move
     puts "#{game.current_player.symbol} has chosen"
     puts "Your move is #{ui.move}"
-    board.mark_cell(ui.move.to_i, game.current_player.symbol)
+    board.mark_cell(ui.move.to_i)
     ui.draw_board(board)
   end
 
   if game.current_player.is_a?(Computer)
     puts "The computer is thinking..."
-    board.mark_cell(game.current_player.make_smart_move(board), game.current_player.symbol)
+    board.mark_cell(game.current_player.make_simple_move(board))
     ui.draw_board(board)
   end
 
