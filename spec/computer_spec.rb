@@ -6,7 +6,7 @@ describe Computer, '#make_simple_move' do
     it 'makes a simple move' do
       symbol = 'O'
       computer = Computer.new(symbol)
-      board = Board.new(3)
+      board = Board.new
       board.cells = %w( X X X
                         - - -
                         - - - )

@@ -4,10 +4,10 @@ class Board
 
   attr_accessor :cells, :turn
 
-  def initialize(size, cells=nil)
-    @size = size
-    @cells = cells || Array.new(size**2, EMPTY_CELL)
-    @turn = "X"
+  def initialize(cells=nil, turn= "X")
+    @size = 3
+    @cells = cells || Array.new(@size**2, EMPTY_CELL)
+    @turn = turn
   end
 
   def length
@@ -19,8 +19,9 @@ class Board
   end
 
   def mark_cell(cell)
-    board = Board.new(@size, @cells.dup)
-    @cells[cell] = toggle_player_turn
+    board = Board.new(@cells.dup)
+    @cells[cell] = @turn
+    @turn = xturn("O", "X")
     board
   end
 
@@ -90,10 +91,19 @@ class Board
     end
   end
 
+  def xturn(x, o)
+    @turn == "X" ? x : o
+  end
+
   def minimax
     return 100 if who_won == "O"
     return -100 if who_won == "X"
     return 0 if tied?
+
+    empty_cells.map do |index|
+      p self.mark_cell(index).minimax
+    end
+
   end
 
 end

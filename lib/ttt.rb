@@ -14,17 +14,17 @@ ui.draw_board_map
 
 case ui.game_type.to_i
 when 1
-  board = Board.new(3)
+  board = Board.new
   player1 = Player.new('X')
   player2 = Player.new('O')
   game = Game.new(player1, player2, board)
 when 2
-  board = Board.new(3)
+  board = Board.new
   player1 = Player.new('X')
   player2 = Computer.new('O')
   game = Game.new(player1, player2, board)
 when 3
-  board = Board.new(3)
+  board = Board.new
   player1 = Computer.new('X')
   player2 = Computer.new('O')
   game = Game.new(player1, player2, board)

@@ -2,15 +2,13 @@ require_relative '../lib/game'
 require_relative '../lib/player'
 require_relative '../lib/board'
 
-BOARD_SIZE = 3
-
 describe Game, '#new_game' do
 
   context 'When a game starts' do
     it 'Should take two players and a board as args' do
       player1 = Player.new('X')
       player2 = Player.new('O')
-      board = Board.new(BOARD_SIZE)
+      board = Board.new
       game = Game.new(player1, player2, board)
       expect(game.board).to eq board
     end
@@ -23,7 +21,7 @@ describe Game, '#game_over?' do
     it 'Should return true' do
       player1 = Player.new('X')
       player2 = Player.new('O')
-      board = Board.new(BOARD_SIZE)
+      board = Board.new
       game = Game.new(player1, player2, board)
       board.cells = %w( X X X
                         - - -
@@ -36,7 +34,7 @@ describe Game, '#game_over?' do
     it 'Should return true' do
       player1 = Player.new('X')
       player2 = Player.new('O')
-      board = Board.new(BOARD_SIZE)
+      board = Board.new
       game = Game.new(player1, player2, board)
       board.cells = %w( O X O
                         X X O
@@ -49,7 +47,7 @@ describe Game, '#game_over?' do
     it 'Should return false' do
       player1 = Player.new('X')
       player2 = Player.new('O')
-      board = Board.new(BOARD_SIZE)
+      board = Board.new
       game = Game.new(player1, player2, board)
       board.cells = %w( O X O
                         - - -
@@ -65,7 +63,7 @@ describe Game, '#winner' do
     it 'returns the mark of the winner- X' do
       player1 = Player.new('X')
       player2 = Player.new('O')
-      board = Board.new(BOARD_SIZE)
+      board = Board.new
       game = Game.new(player1, player2, board)
       board.cells = %w( O X O
                         - X -
@@ -79,7 +77,7 @@ describe Game, '#winner' do
     it 'returns the mark of the winner- O' do
       player1 = Player.new('X')
       player2 = Player.new('O')
-      board = Board.new(BOARD_SIZE)
+      board = Board.new
       game = Game.new(player1, player2, board)
       board.cells = %w( O O O
                         - X -
@@ -93,7 +91,7 @@ describe Game, '#winner' do
     it 'returns the mark of the winner- X' do
       player1 = Player.new('X')
       player2 = Player.new('O')
-      board = Board.new(BOARD_SIZE)
+      board = Board.new
       game = Game.new(player1, player2, board)
       board.cells = %w( X O -
                         O X -
@@ -107,7 +105,7 @@ describe Game, '#winner' do
     it 'returns nil' do
       player1 = Player.new('X')
       player2 = Player.new('O')
-      board = Board.new(BOARD_SIZE)
+      board = Board.new
       game = Game.new(player1, player2, board)
       board.cells = %w( O X O
                         - - -
