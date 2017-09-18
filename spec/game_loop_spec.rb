@@ -2,18 +2,6 @@ require_relative '../lib/game'
 require_relative '../lib/player'
 require_relative '../lib/board'
 
-describe Game, '#new_game' do
-
-  context 'When a game starts' do
-    it 'Should take two players and a board as args' do
-      player1 = Player.new('X')
-      player2 = Player.new('O')
-      board = Board.new
-      game = Game.new(player1, player2, board)
-      expect(game.board).to eq board
-    end
-  end
-end
 
 describe Game, '#game_over?' do
 
@@ -22,11 +10,11 @@ describe Game, '#game_over?' do
       player1 = Player.new('X')
       player2 = Player.new('O')
       board = Board.new
-      game = Game.new(player1, player2, board)
+      game = Game.new(player1, player2)
       board.cells = %w( X X X
                         - - -
                         - - - )
-      expect(game.game_over?).to be true
+      expect(game.game_over?(board)).to be true
     end
   end
 
@@ -35,11 +23,11 @@ describe Game, '#game_over?' do
       player1 = Player.new('X')
       player2 = Player.new('O')
       board = Board.new
-      game = Game.new(player1, player2, board)
+      game = Game.new(player1, player2)
       board.cells = %w( O X O
                         X X O
                         X O X )
-      expect(game.game_over?).to be true
+      expect(game.game_over?(board)).to be true
     end
   end
 
@@ -48,11 +36,11 @@ describe Game, '#game_over?' do
       player1 = Player.new('X')
       player2 = Player.new('O')
       board = Board.new
-      game = Game.new(player1, player2, board)
+      game = Game.new(player1, player2)
       board.cells = %w( O X O
                         - - -
                         - - - )
-      expect(game.game_over?).to be false
+      expect(game.game_over?(board)).to be false
     end
   end
 end
@@ -64,11 +52,11 @@ describe Game, '#winner' do
       player1 = Player.new('X')
       player2 = Player.new('O')
       board = Board.new
-      game = Game.new(player1, player2, board)
+      game = Game.new(player1, player2)
       board.cells = %w( O X O
                         - X -
                         O X - )
-      result = game.winner
+      result = game.winner(board)
       expect(result).to eq('X')
     end
   end
@@ -78,11 +66,11 @@ describe Game, '#winner' do
       player1 = Player.new('X')
       player2 = Player.new('O')
       board = Board.new
-      game = Game.new(player1, player2, board)
+      game = Game.new(player1, player2)
       board.cells = %w( O O O
                         - X -
                         X X - )
-      result = game.winner
+      result = game.winner(board)
       expect(result).to eq('O')
     end
   end
@@ -92,11 +80,11 @@ describe Game, '#winner' do
       player1 = Player.new('X')
       player2 = Player.new('O')
       board = Board.new
-      game = Game.new(player1, player2, board)
+      game = Game.new(player1, player2)
       board.cells = %w( X O -
                         O X -
                         - O X )
-      result = game.winner
+      result = game.winner(board)
       expect(result).to eq('X')
     end
   end
@@ -106,11 +94,11 @@ describe Game, '#winner' do
       player1 = Player.new('X')
       player2 = Player.new('O')
       board = Board.new
-      game = Game.new(player1, player2, board)
+      game = Game.new(player1, player2)
       board.cells = %w( O X O
                         - - -
                         - - - )
-      result = game.winner
+      result = game.winner(board)
       expect(result).to be nil
     end
   end
