@@ -94,20 +94,18 @@ class Board
     @turn == "X" ? x : o
   end
 
-  def minimax
-
-    puts "minimax called"
-    puts "Current board state = #{self.cells}"
-    puts "Spaces open = #{self.empty_cells}"
-    puts "Currently #{self.turn} turn to go"
-
-    return 100 if who_won == "O"
-    return -100 if who_won == "X"
+  def minimax(depth=1)
+    return 100 if who_won == "X"
+    return -100 if who_won == "O"
     return 0 if tied?
 
     empty_cells.map { |index|
-      mark_cell(index).minimax
-    }.max
+      mark_cell(index).minimax(depth+1) }
+      .send(xturn(:max, :min)) + xturn(-depth, depth)
+  end
+
+  def smart_move
+    empty_cells.send (xturn(:max_by, :min_by)) { |index| mark_cell(index).minimax }
   end
 
 end

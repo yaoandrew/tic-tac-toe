@@ -261,24 +261,24 @@ end
 describe Board, '#minimax' do
 
   context 'When minimax is called with an end state board' do
-    it 'returns 100 if O is the winner' do
+    it 'returns -100 if O is the winner' do
       board = Board.new
       board.cells = %w( O O O
                         - - -
                         - - - )
       result = board.minimax
-      expect(result).to eq 100
+      expect(result).to eq (-100)
     end
   end
 
   context 'When minimax is called with an end state board' do
-    it 'returns -100 if X is the winner' do
+    it 'returns 100 if X is the winner' do
       board = Board.new
       board.cells = %w( X X X
                         - - -
                         - - - )
       result = board.minimax
-      expect(result).to eq (-100)
+      expect(result).to eq 100
     end
   end
 
@@ -293,38 +293,52 @@ describe Board, '#minimax' do
     end
   end
 
-  xcontext 'When minimax is called with a board X can win' do
-    it 'returns -100' do
+  context 'When minimax is called with a board X can win' do
+    it 'returns 99' do
       board = Board.new
       board.cells = %w( X - -
                         X - -
                         - - - )
       result = board.minimax
-      expect(result).to eq (-100)
+      expect(result).to eq (99)
     end
   end
 
-  context 'When minimax is called with a board X can win' do
-    it 'returns 100' do
+  context 'When minimax is called with a board O can win' do
+    it 'returns -99' do
       board = Board.new
       board.turn = "O"
-      board.cells = %w( X X O
-                        O X X
-                        O - - )
+      board.cells = %w( O O -
+                        - - -
+                        - - - )
       result = board.minimax
-      expect(result).to eq (-100)
+      expect(result).to eq (-99)
+    end
+  end
+end
+
+describe Board, '#smart_move' do
+
+  context 'When X can win the game in one move' do
+    it 'picks the winning spot' do
+      board = Board.new
+      board.cells = %w( X - -
+                        X - -
+                        - - - )
+      result = board.smart_move
+      expect(result).to eq 6
     end
   end
 
-  xcontext 'When minimax is called with a board O can win' do
-    it 'returns 100' do
+  context 'When O can win the game in one move' do
+    it 'picks the winning spot' do
       board = Board.new
       board.turn = "O"
-      board.cells = %w( X O -
-                        - X O
-                        X - O )
-      result = board.minimax
-      expect(result).to eq (100)
+      board.cells = %w( O - -
+                        O - -
+                        - - - )
+      result = board.smart_move
+      expect(result).to eq 6
     end
   end
 end

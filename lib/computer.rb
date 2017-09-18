@@ -14,6 +14,10 @@ class Computer
     simple_move
   end
 
+  def make_smart_move(board)
+    board.smart_move
+  end
+
   def draw_board(board)
     puts "=========="
     puts "=========="

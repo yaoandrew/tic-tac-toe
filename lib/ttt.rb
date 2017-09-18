@@ -43,7 +43,7 @@ until game.game_over?(board) do
 
   if game.current_player.is_a?(Computer)
     puts "The computer is thinking..."
-    board = board.mark_cell(game.current_player.make_simple_move(board))
+    board = board.mark_cell(game.current_player.make_smart_move(board))
     ui.draw_board(board)
   end
 
