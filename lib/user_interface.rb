@@ -45,7 +45,7 @@ class UserInterface
     if board.tied?
       puts "Cat's game!!"
     else
-      puts "#{game.winner} has won the game!"
+      puts "#{game.winner(board)} has won the game!"
     end
   end
 end

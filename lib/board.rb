@@ -95,17 +95,19 @@ class Board
   end
 
   def minimax
-    return 100 if who_won == "O"
-    return -100 if who_won == "X"
-    return 0 if tied?
 
+    puts "minimax called"
     puts "Current board state = #{self.cells}"
     puts "Spaces open = #{self.empty_cells}"
     puts "Currently #{self.turn} turn to go"
 
+    return 100 if who_won == "O"
+    return -100 if who_won == "X"
+    return 0 if tied?
+
     empty_cells.map { |index|
       mark_cell(index).minimax
-    }.min
+    }.max
   end
 
 end

@@ -17,33 +17,33 @@ when 1
   board = Board.new
   player1 = Player.new('X')
   player2 = Player.new('O')
-  game = Game.new(player1, player2, board)
+  game = Game.new(player1, player2)
 when 2
   board = Board.new
   player1 = Player.new('X')
   player2 = Computer.new('O')
-  game = Game.new(player1, player2, board)
+  game = Game.new(player1, player2)
 when 3
   board = Board.new
   player1 = Computer.new('X')
   player2 = Computer.new('O')
-  game = Game.new(player1, player2, board)
+  game = Game.new(player1, player2)
 end
 
-until game.game_over? do
+until game.game_over?(board) do
 
   if game.current_player.is_a?(Player)
     puts "Its time for #{game.current_player.symbol} to go"
     ui.prompt_player_for_move
     puts "#{game.current_player.symbol} has chosen"
     puts "Your move is #{ui.move}"
-    board.mark_cell(ui.move.to_i)
+    board = board.mark_cell(ui.move.to_i)
     ui.draw_board(board)
   end
 
   if game.current_player.is_a?(Computer)
     puts "The computer is thinking..."
-    board.mark_cell(game.current_player.make_simple_move(board))
+    board = board.mark_cell(game.current_player.make_simple_move(board))
     ui.draw_board(board)
   end
 

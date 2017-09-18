@@ -321,7 +321,7 @@ describe Board, '#minimax' do
       board = Board.new
       board.turn = "O"
       board.cells = %w( X O -
-                        - X -
+                        - X O
                         X - O )
       result = board.minimax
       expect(result).to eq (100)
