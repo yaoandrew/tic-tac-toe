@@ -33,10 +33,8 @@ describe Board, '#mark_cell' do
     it 'marks the board in the correct cell' do
       board = Board.new
       cell = 4
-      symbol = 'X'
-      board.mark_cell(cell)
-      result = board.display_cell(cell)
-      expect(result).to eq(symbol)
+      result = board.mark_cell(cell)
+      expect(result.cells).to eq(%w(- - - - X - - - -))
     end
   end
 end
@@ -56,9 +54,8 @@ describe Board, '#cell_open?' do
     it 'returns false' do
       board = Board.new
       cell = 4
-      board.mark_cell(cell)
-      result = board.cell_open?(cell)
-      expect(result).to eq false
+      result = board.mark_cell(cell)
+      expect(result.cell_open?(cell)).to eq false
     end
   end
 end
@@ -295,15 +292,39 @@ describe Board, '#minimax' do
       expect(result).to eq 0
     end
   end
-  
-  context 'When minimax is called with a board X can win' do
+
+  xcontext 'When minimax is called with a board X can win' do
     it 'returns -100' do
       board = Board.new
-      board.cells = %w( X X -
-                        - - -
+      board.cells = %w( X - -
+                        X - -
                         - - - )
       result = board.minimax
       expect(result).to eq (-100)
+    end
+  end
+
+  context 'When minimax is called with a board X can win' do
+    it 'returns 100' do
+      board = Board.new
+      board.turn = "O"
+      board.cells = %w( X X O
+                        O X X
+                        O - - )
+      result = board.minimax
+      expect(result).to eq (-100)
+    end
+  end
+
+  xcontext 'When minimax is called with a board O can win' do
+    it 'returns 100' do
+      board = Board.new
+      board.turn = "O"
+      board.cells = %w( X O -
+                        - X -
+                        X - O )
+      result = board.minimax
+      expect(result).to eq (100)
     end
   end
 end

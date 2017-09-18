@@ -19,9 +19,8 @@ class Board
   end
 
   def mark_cell(cell)
-    board = Board.new(@cells.dup)
-    @cells[cell] = @turn
-    @turn = xturn("O", "X")
+    board = Board.new(@cells.dup, xturn("O", "X"))
+    board.cells[cell] = turn
     board
   end
 
@@ -100,10 +99,13 @@ class Board
     return -100 if who_won == "X"
     return 0 if tied?
 
-    empty_cells.map do |index|
-      p self.mark_cell(index).minimax
-    end
+    puts "Current board state = #{self.cells}"
+    puts "Spaces open = #{self.empty_cells}"
+    puts "Currently #{self.turn} turn to go"
 
+    empty_cells.map { |index|
+      mark_cell(index).minimax
+    }.min
   end
 
 end
