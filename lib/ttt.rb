@@ -5,8 +5,10 @@ require_relative 'game'
 require_relative 'player'
 require_relative 'computer'
 require_relative 'board'
+require_relative 'validator'
 
-ui = UserInterface.new
+validator = Validator.new
+ui = UserInterface.new(validator)
 
 ui.welcome
 ui.prompt_user_for_game_type
@@ -34,7 +36,7 @@ until game.game_over?(board) do
 
   if game.current_player.is_a?(Player)
     puts "Its time for #{game.current_player.symbol} to go"
-    ui.prompt_player_for_move
+    ui.prompt_player_for_move(board)
     puts "#{game.current_player.symbol} has chosen"
     puts "Your move is #{ui.move}"
     board = board.mark_cell(ui.move.to_i)

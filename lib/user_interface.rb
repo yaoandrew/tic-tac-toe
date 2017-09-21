@@ -2,6 +2,10 @@ class UserInterface
 
   attr_reader :mark, :move, :game_type
 
+  def initialize(validator)
+    @validator = validator
+  end
+
   def draw_board(board)
     puts board.display_cell(0) + " | " + board.display_cell(1) + " | " + board.display_cell(2)
     puts "---------"
@@ -29,6 +33,11 @@ class UserInterface
     puts "2) Human vs. Computer"
     puts "3) Computer vs. Computer"
     @game_type = gets.chomp
+
+    until (@validator.valid_game?(@game_type.to_i))
+      puts "Please select 1, 2 or 3."
+      @game_type = gets.chomp
+    end
   end
 
   def prompt_user_for_mark
@@ -36,9 +45,14 @@ class UserInterface
     @mark = gets.chomp
   end
 
-  def prompt_player_for_move
+  def prompt_player_for_move(board)
     puts "Please make your move"
     @move = gets.chomp
+
+    until (@validator.valid_move?(board, @move.to_i))
+      puts "Please select a valid space on the board."
+      @move = gets.chomp
+    end
   end
 
   def show_winner(board, game)

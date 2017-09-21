@@ -60,6 +60,27 @@ describe Board, '#cell_open?' do
   end
 end
 
+describe Board, 'in_range?' do
+
+  context 'When called with a location of a cell' do
+    it 'returns true if the cell is in the valid range' do
+      board = Board.new
+      cell = 5
+      result = board.in_range?(cell)
+      expect(result).to eq true
+    end
+  end
+  
+  context 'When called with a location of a cell' do
+    it 'returns false if the cell is out of the valid range' do
+      board = Board.new
+      cell = 15
+      result = board.in_range?(cell)
+      expect(result).to eq false
+    end
+  end
+end
+
 describe Board, '#empty_cells' do
 
   context 'When called' do

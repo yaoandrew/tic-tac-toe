@@ -28,6 +28,10 @@ class Board
     @cells[cell] == EMPTY_CELL
   end
 
+  def in_range?(cell)
+    (0..8).include?(cell)
+  end
+
   def empty_cells
     @cells.each_index.select { |index| @cells[index] == '-' }
   end
