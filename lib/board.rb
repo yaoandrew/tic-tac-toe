@@ -102,8 +102,11 @@ class Board
     return 100 if who_won == "X"
     return -100 if who_won == "O"
     return 0 if tied?
+    @@minicache ||= {}
+    score = @@minicache[@cells]
+    return score unless score.nil?
 
-    empty_cells.map { |index|
+    @@minicache[@cells] = empty_cells.map { |index|
       mark_cell(index).minimax(depth+1) }
       .send(xturn(:max, :min)) + xturn(-depth, depth)
   end
