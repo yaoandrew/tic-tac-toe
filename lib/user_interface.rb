@@ -49,10 +49,15 @@ class UserInterface
     puts "Please make your move"
     @move = gets.chomp
 
-    until (@validator.valid_move?(board, @move.to_i))
+    until (@validator.valid_move?(board, input_to_int(@move)))
       puts "Please select a valid space on the board."
       @move = gets.chomp
     end
+  end
+
+  def input_to_int(string)
+    number = string.to_i
+    number if number.to_s == string
   end
 
   def show_winner(board, game)
