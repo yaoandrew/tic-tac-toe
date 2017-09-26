@@ -18,14 +18,4 @@ class Computer
     board.smart_move
   end
 
-  def draw_board(board)
-    puts "=========="
-    puts "=========="
-    puts board.display_cell(0) + " | " + board.display_cell(1) + " | " + board.display_cell(2)
-    puts "---------"
-    puts board.display_cell(3) + " | " + board.display_cell(4) + " | " + board.display_cell(5)
-    puts "---------"
-    puts board.display_cell(6) + " | " + board.display_cell(7) + " | " + board.display_cell(8)
-  end
-
 end
