@@ -1,13 +1,13 @@
 require_relative '../lib/player'
 
-describe Player, '#initialize' do
-
-  context 'When the player is initialized' do
-    it 'creates a player' do
-      symbol = "X"
+describe Player, '#make_move' do
+  context 'When the player is asked' do
+    it 'makes a move' do
+      symbol = 'X'
       player = Player.new(symbol)
-      result = player.symbol
-      expect(result).to eq("X")
+      result = player.make_move
+      move = 3
+      expect(result).to eq(move)
     end
   end
 end
