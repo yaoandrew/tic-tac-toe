@@ -20,4 +20,5 @@ class Game
   def winner(board)
     board.who_won
   end
+
 end

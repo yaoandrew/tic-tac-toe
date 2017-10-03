@@ -33,7 +33,7 @@ class Board
   end
 
   def empty_cells
-    @cells.each_index.select { |index| @cells[index] == '-' }
+    @cells.each_index.select { |index| @cells[index] == EMPTY_CELL }
   end
 
   def rows
@@ -83,14 +83,6 @@ class Board
       rows.find { |row| row.all? { |x| row[0] == x } }.first
     elsif diagonal_winner?
       diagonals.find { |diagonal| diagonal.all? { |x| diagonal[0] == x } }.first
-    end
-  end
-
-  def toggle_player_turn
-    if empty_cells.length.even?
-      return "O"
-    else
-      return "X"
     end
   end
 

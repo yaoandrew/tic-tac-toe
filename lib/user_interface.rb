@@ -40,11 +40,6 @@ class UserInterface
     end
   end
 
-  def prompt_user_for_mark
-    puts "Please select X or O"
-    @mark = gets.chomp
-  end
-
   def prompt_player_for_move(board)
     puts "Please make your move"
     @move = gets.chomp
@@ -67,4 +62,5 @@ class UserInterface
       puts "#{game.winner(board)} has won the game!"
     end
   end
+
 end
