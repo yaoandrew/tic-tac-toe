@@ -15,13 +15,13 @@ describe Board, '#initialize' do
   end
 end
 
-describe Board, '#display_cell' do
+describe Board, '#get_cell' do
 
   context 'When the board has been initialized' do
     it 'returns the contents of a cell' do
       board = Board.new
       cell_num = 4
-      result = board.display_cell(cell_num)
+      result = board.get_cell(cell_num)
       expect(result).to eq(Board::EMPTY_CELL)
     end
   end

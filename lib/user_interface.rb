@@ -2,29 +2,22 @@ class UserInterface
 
   attr_reader :mark, :move, :game_type
 
-  def initialize(validator)
+  def initialize(validator, print = lambda {|s| puts s}, prompt = lambda {|| gets.chomp})
     @validator = validator
+    @print = print
+    @prompt = prompt
   end
 
   def draw_board(board)
-    puts board.display_cell(0) + " | " + board.display_cell(1) + " | " + board.display_cell(2)
-    puts "---------"
-    puts board.display_cell(3) + " | " + board.display_cell(4) + " | " + board.display_cell(5)
-    puts "---------"
-    puts board.display_cell(6) + " | " + board.display_cell(7) + " | " + board.display_cell(8)
+    @print.call pre_render_board(board)
   end
 
   def draw_board_map
-    puts "Choose your move by picking the number that corresponds with the space you want."
-    puts "0 | 1 | 2"
-    puts "---------"
-    puts "3 | 4 | 5"
-    puts "---------"
-    puts "6 | 7 | 8"
+    @print.call pre_render_board_map
   end
 
   def welcome
-    puts "Let's play tic tac toe"
+    @print.call pre_render_welcome
   end
 
   def prompt_user_for_game_type
@@ -61,6 +54,39 @@ class UserInterface
     else
       puts "#{game.winner(board)} has won the game!"
     end
+  end
+
+  private
+  
+  def pre_render_board(board)
+    string = ""
+
+    string << board.get_cell(0) + " | " + board.get_cell(1) + " | " + board.get_cell(2) + "\n"
+    string << "---------" + "\n"
+    string << board.get_cell(3) + " | " + board.get_cell(4) + " | " + board.get_cell(5) + "\n"
+    string << "---------" + "\n"
+    string << board.get_cell(6) + " | " + board.get_cell(7) + " | " + board.get_cell(8) + "\n"
+
+    string
+  end
+
+  def pre_render_board_map
+    string = ""
+
+    string << "0 | 1 | 2" + "\n" 
+    string << "---------" + "\n"
+    string << "3 | 4 | 5" + "\n" 
+    string << "---------" + "\n"
+    string << "6 | 7 | 8" + "\n" 
+
+    string
+  end
+
+  def pre_render_welcome
+    string = ""
+    string << "Let's play tic tac toe"
+
+    string
   end
 
 end

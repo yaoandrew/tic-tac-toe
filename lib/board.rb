@@ -14,7 +14,7 @@ class Board
     @cells.length
   end
 
-  def display_cell(cell)
+  def get_cell(cell)
     @cells[cell]
   end
 
