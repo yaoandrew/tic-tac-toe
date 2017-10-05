@@ -40,7 +40,7 @@ describe UserInterface do
                  "3 | 4 | 5\n" +
                  "---------\n" +
                  "6 | 7 | 8\n"
-      
+
       ui.draw_board_map
       expect(@mock_io.printed).to eq(expected)
     end
@@ -50,7 +50,7 @@ describe UserInterface do
     it 'Prints the welcome message' do
       validator = Validator.new
       ui = UserInterface.new(validator, @mock_printer)
-      
+
       expected = "Let's play tic tac toe"
 
       ui.welcome
@@ -62,7 +62,7 @@ describe UserInterface do
     it 'Prints the list of game types' do
       validator = Validator.new
       ui = UserInterface.new(validator, @mock_printer)
-    
+
       expected = "Please choose a game type:\n" +
                  "1) Human vs. Human\n" +
                  "2) Human vs. Computer\n" +

@@ -1,6 +1,6 @@
 class UserInterface
 
-  attr_reader :mark, :move, :game_type
+  attr_reader :game_type, :move
 
   def initialize(validator, print = lambda {|s| puts s}, prompt = lambda {|| gets.chomp})
     @validator = validator
@@ -25,11 +25,11 @@ class UserInterface
   end
 
   def get_game_type
-    @game_type = gets.chomp
+    @game_type = @prompt.call
 
     until (@validator.valid_game?(@game_type.to_i))
       puts "Please select 1, 2 or 3."
-      @game_type = gets.chomp
+      @game_type = @prompt.call
     end
   end
 
@@ -52,7 +52,7 @@ class UserInterface
   end
 
   private
-  
+
   def pre_render_board(board)
     string = ""
 
@@ -68,11 +68,11 @@ class UserInterface
   def pre_render_board_map
     string = ""
 
-    string << "0 | 1 | 2" + "\n" 
+    string << "0 | 1 | 2" + "\n"
     string << "---------" + "\n"
-    string << "3 | 4 | 5" + "\n" 
+    string << "3 | 4 | 5" + "\n"
     string << "---------" + "\n"
-    string << "6 | 7 | 8" + "\n" 
+    string << "6 | 7 | 8" + "\n"
 
     string
   end
