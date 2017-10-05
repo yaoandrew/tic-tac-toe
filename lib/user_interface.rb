@@ -21,10 +21,10 @@ class UserInterface
   end
 
   def prompt_user_for_game_type
-    puts "Please choose a game type:"
-    puts "1) Human vs. Human"
-    puts "2) Human vs. Computer"
-    puts "3) Computer vs. Computer"
+    @print.call pre_render_game_type
+  end
+
+  def get_game_type
     @game_type = gets.chomp
 
     until (@validator.valid_game?(@game_type.to_i))
@@ -41,11 +41,6 @@ class UserInterface
       puts "Please select a valid space on the board."
       @move = gets.chomp
     end
-  end
-
-  def input_to_int(string)
-    number = string.to_i
-    number if number.to_s == string
   end
 
   def show_winner(board, game)
@@ -87,6 +82,21 @@ class UserInterface
     string << "Let's play tic tac toe"
 
     string
+  end
+
+  def pre_render_game_type
+    string = ""
+    string << "Please choose a game type:" + "\n"
+    string << "1) Human vs. Human" + "\n"
+    string << "2) Human vs. Computer" + "\n"
+    string << "3) Computer vs. Computer"
+
+    string
+  end
+
+  def input_to_int(string)
+    number = string.to_i
+    number if number.to_s == string
   end
 
 end

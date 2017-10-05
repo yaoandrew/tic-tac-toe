@@ -12,6 +12,7 @@ ui = UserInterface.new(validator)
 
 ui.welcome
 ui.prompt_user_for_game_type
+ui.get_game_type
 ui.draw_board_map
 
 case ui.game_type.to_i

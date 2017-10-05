@@ -58,6 +58,21 @@ describe UserInterface do
     end
   end
 
+  context 'When #prompt_user_for_game_type is called' do
+    it 'Prints the list of game types' do
+      validator = Validator.new
+      ui = UserInterface.new(validator, @mock_printer)
+    
+      expected = "Please choose a game type:\n" +
+                 "1) Human vs. Human\n" +
+                 "2) Human vs. Computer\n" +
+                 "3) Computer vs. Computer"
+
+      ui.prompt_user_for_game_type
+      expect(@mock_io.printed).to eq(expected)
+    end
+  end
+
   class MockIO
     attr_reader :printed
 
