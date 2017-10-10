@@ -73,16 +73,19 @@ describe UserInterface do
     end
   end
 
+
   class MockIO
+
     attr_reader :printed
 
-    def initialize()
+    def initialize
       @printed = ""
     end
 
     def print(string)
       @printed << string
     end
+
   end
 
 end

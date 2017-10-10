@@ -28,26 +28,26 @@ class UserInterface
     @game_type = @prompt.call
 
     until (@validator.valid_game?(@game_type.to_i))
-      puts "Please select 1, 2 or 3."
+      @print.call pre_render_select_game_type
       @game_type = @prompt.call
     end
   end
 
   def prompt_player_for_move(board)
-    puts "Please make your move"
-    @move = gets.chomp
+    @print.call pre_render_prompt_player_for_move
+    @move = @prompt.call
 
     until (@validator.valid_move?(board, input_to_int(@move)))
-      puts "Please select a valid space on the board."
-      @move = gets.chomp
+      @print.call pre_render_prompt_select_space
+      @move = @prompt.call
     end
   end
 
   def show_winner(board, game)
     if board.tied?
-      puts "Cat's game!!"
+      @print.call pre_render_cats_game
     else
-      puts "#{game.winner(board)} has won the game!"
+      @print.call pre_render_winner(board, game)
     end
   end
 
@@ -90,6 +90,42 @@ class UserInterface
     string << "1) Human vs. Human" + "\n"
     string << "2) Human vs. Computer" + "\n"
     string << "3) Computer vs. Computer"
+
+    string
+  end
+
+  def pre_render_select_game_type
+    string = ""
+    string << "Please select 1, 2 or 3."
+
+    string
+  end
+
+  def pre_render_prompt_player_for_move
+    string = ""
+    string << "Please make your move"
+
+    string
+  end
+
+  def pre_render_prompt_select_space
+    string = ""
+    string << "Please select a valid space on the board."
+
+    string
+  end
+
+  def pre_render_cats_game
+    string = ""
+    string << "Cat's game!!"
+
+    string
+  end
+
+  def pre_render_winner(board, game)
+    string = ""
+    string << game.winner(board)
+    string << " has won the game!"
 
     string
   end
