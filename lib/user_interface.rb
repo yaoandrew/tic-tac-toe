@@ -43,11 +43,11 @@ class UserInterface
     end
   end
 
-  def show_winner(board, game)
-    if board.tied?
+  def show_winner(board, game, board_evaluator)
+    if board_evaluator.tied?(board)
       @print.call pre_render_cats_game
     else
-      @print.call pre_render_winner(board, game)
+      @print.call pre_render_winner(board, game, board_evaluator)
     end
   end
 
@@ -122,9 +122,9 @@ class UserInterface
     string
   end
 
-  def pre_render_winner(board, game)
+  def pre_render_winner(board, game, board_evaluator)
     string = ""
-    string << game.winner(board)
+    string << game.winner(board, board_evaluator)
     string << " has won the game!"
 
     string

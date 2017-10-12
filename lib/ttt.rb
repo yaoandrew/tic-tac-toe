@@ -6,8 +6,10 @@ require_relative 'player'
 require_relative 'computer'
 require_relative 'board'
 require_relative 'validator'
+require_relative 'board_evaluator'
 
 validator = Validator.new
+board_evaluator = BoardEvaluator.new
 ui = UserInterface.new(validator)
 
 ui.welcome
@@ -33,7 +35,7 @@ when 3
   game = Game.new(player1, player2)
 end
 
-until game.game_over?(board) do
+until game.game_over?(board, board_evaluator) do
 
   if game.current_player.is_a?(Player)
     puts "Its time for #{game.current_player.symbol} to go"
@@ -54,4 +56,4 @@ until game.game_over?(board) do
 
 end
 
-ui.show_winner(board, game)
+ui.show_winner(board, game, board_evaluator)
