@@ -11,6 +11,7 @@ require_relative 'board_evaluator'
 validator = Validator.new
 board_evaluator = BoardEvaluator.new
 ui = UserInterface.new(validator)
+board = Board.new
 
 ui.welcome
 ui.prompt_user_for_game_type
@@ -19,17 +20,14 @@ ui.draw_board_map
 
 case ui.game_type.to_i
 when 1
-  board = Board.new
   player1 = Player.new('X')
   player2 = Player.new('O')
   game = Game.new(player1, player2)
 when 2
-  board = Board.new
   player1 = Player.new('X')
   player2 = Computer.new('O')
   game = Game.new(player1, player2)
 when 3
-  board = Board.new
   player1 = Computer.new('X')
   player2 = Computer.new('O')
   game = Game.new(player1, player2)
@@ -48,7 +46,7 @@ until game.game_over?(board, board_evaluator) do
 
   if game.current_player.is_a?(Computer)
     puts "The computer is thinking..."
-    board = board.mark_cell(game.current_player.make_smart_move(board))
+    board = board.mark_cell(game.current_player.make_smart_move(board, board_evaluator))
     ui.draw_board(board)
   end
 

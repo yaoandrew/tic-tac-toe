@@ -14,8 +14,8 @@ class Computer
     simple_move
   end
 
-  def make_smart_move(board)
-    board.smart_move
+  def make_smart_move(board, board_evaluator)
+    board_evaluator.smart_move(board)
   end
 
 end
