@@ -14,7 +14,7 @@ class Board
     @cells.length
   end
 
-  def display_cell(cell)
+  def get_cell(cell)
     @cells[cell]
   end
 
@@ -33,7 +33,7 @@ class Board
   end
 
   def empty_cells
-    @cells.each_index.select { |index| @cells[index] == '-' }
+    @cells.each_index.select { |index| @cells[index] == EMPTY_CELL }
   end
 
   def rows
@@ -56,63 +56,8 @@ class Board
     [main_diagonal, anti_diagonal]
   end
 
-  def row_winner?
-    rows.any? { |row| row.all? { |x| row[0] == x && x != EMPTY_CELL }}
-  end
-
-  def column_winner?
-    columns.any? { |column| column.all? { |x| column[0] == x && x != EMPTY_CELL }}
-  end
-
-  def diagonal_winner?
-    diagonals.any? { |diagonal| diagonal.all? { |x| diagonal[1] == x && x != EMPTY_CELL }}
-  end
-
-  def tied?
-    @cells.all? { |cell| cell != EMPTY_CELL } && !any_winner?
-  end
-
-  def any_winner?
-    row_winner? || column_winner? || diagonal_winner?
-  end
-
-  def who_won
-    if column_winner?
-      columns.find { |column| column.all? { |x| column[0] == x } }.first
-    elsif row_winner?
-      rows.find { |row| row.all? { |x| row[0] == x } }.first
-    elsif diagonal_winner?
-      diagonals.find { |diagonal| diagonal.all? { |x| diagonal[0] == x } }.first
-    end
-  end
-
-  def toggle_player_turn
-    if empty_cells.length.even?
-      return "O"
-    else
-      return "X"
-    end
-  end
-
   def xturn(x, o)
     @turn == "X" ? x : o
-  end
-
-  def minimax(depth=1)
-    return 100 if who_won == "X"
-    return -100 if who_won == "O"
-    return 0 if tied?
-    @@minicache ||= {}
-    score = @@minicache[@cells]
-    return score unless score.nil?
-
-    @@minicache[@cells] = empty_cells.map { |index|
-      mark_cell(index).minimax(depth+1) }
-      .send(xturn(:max, :min)) + xturn(-depth, depth)
-  end
-
-  def smart_move
-    empty_cells.send (xturn(:max_by, :min_by)) { |index| mark_cell(index).minimax }
   end
 
 end

@@ -6,33 +6,34 @@ require_relative 'player'
 require_relative 'computer'
 require_relative 'board'
 require_relative 'validator'
+require_relative 'board_evaluator'
 
 validator = Validator.new
+board_evaluator = BoardEvaluator.new
 ui = UserInterface.new(validator)
+board = Board.new
 
 ui.welcome
 ui.prompt_user_for_game_type
+ui.get_game_type
 ui.draw_board_map
 
 case ui.game_type.to_i
 when 1
-  board = Board.new
   player1 = Player.new('X')
   player2 = Player.new('O')
   game = Game.new(player1, player2)
 when 2
-  board = Board.new
   player1 = Player.new('X')
   player2 = Computer.new('O')
   game = Game.new(player1, player2)
 when 3
-  board = Board.new
   player1 = Computer.new('X')
   player2 = Computer.new('O')
   game = Game.new(player1, player2)
 end
 
-until game.game_over?(board) do
+until game.game_over?(board, board_evaluator) do
 
   if game.current_player.is_a?(Player)
     puts "Its time for #{game.current_player.symbol} to go"
@@ -45,7 +46,7 @@ until game.game_over?(board) do
 
   if game.current_player.is_a?(Computer)
     puts "The computer is thinking..."
-    board = board.mark_cell(game.current_player.make_smart_move(board))
+    board = board.mark_cell(game.current_player.make_smart_move(board, board_evaluator))
     ui.draw_board(board)
   end
 
@@ -53,4 +54,4 @@ until game.game_over?(board) do
 
 end
 
-ui.show_winner(board, game)
+ui.show_winner(board, game, board_evaluator)
