@@ -46,6 +46,22 @@ class UserInterface
     end
   end
 
+  def computer_thinking
+    @print.call @messages.pre_render_computer_thinking
+  end
+
+  def show_player_turn(game)
+    @print.call @messages.pre_render_player_turn(game)
+  end
+
+  def show_player_choice(game)
+    @print.call @messages.pre_render_player_choice(game)
+  end
+
+  def show_player_move(ui)
+    @print.call @messages.pre_render_player_move(ui)
+  end
+
   def show_winner(game, board, board_evaluator)
     if board_evaluator.tied?(board)
       @print.call @messages.pre_render_cats_game
