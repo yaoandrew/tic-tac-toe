@@ -46,7 +46,7 @@ class UserInterface
     end
   end
 
-  def show_winner(board, game, board_evaluator)
+  def show_winner(game, board, board_evaluator)
     if board_evaluator.tied?(board)
       @print.call @messages.pre_render_cats_game
     else

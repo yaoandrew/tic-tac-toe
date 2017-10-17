@@ -1,5 +1,4 @@
 require_relative '../lib/game_factory'
-require_relative '../lib/player'
 
 describe GameFactory, '#create_game' do
       game_factory = GameFactory.new
@@ -8,7 +7,7 @@ describe GameFactory, '#create_game' do
     it 'returns a game where Player1 is a human player' do
       result = game_factory.create_game(1)
 
-      expect(result.player1.is_a?(Player)).to be true
+      expect(result.player1.is_a?(HumanPlayer)).to be true
     end
   end
 
@@ -16,7 +15,7 @@ describe GameFactory, '#create_game' do
     it 'returns a game where Player2 is a human player' do
       result = game_factory.create_game(1)
 
-      expect(result.player2.is_a?(Player)).to be true
+      expect(result.player2.is_a?(HumanPlayer)).to be true
     end
   end
 
@@ -24,7 +23,7 @@ describe GameFactory, '#create_game' do
     it 'returns a game where Player1 is a human player' do
       result = game_factory.create_game(2)
 
-      expect(result.player1.is_a?(Player)).to be true
+      expect(result.player1.is_a?(HumanPlayer)).to be true
     end
   end
 
@@ -32,7 +31,7 @@ describe GameFactory, '#create_game' do
     it 'returns a game where Player2 is a computer player' do
       result = game_factory.create_game(2)
 
-      expect(result.player2.is_a?(Computer)).to be true
+      expect(result.player2.is_a?(ComputerPlayer)).to be true
     end
   end
 
@@ -40,7 +39,7 @@ describe GameFactory, '#create_game' do
     it 'returns a game where Player1 is a computer player' do
       result = game_factory.create_game(3)
 
-      expect(result.player1.is_a?(Computer)).to be true
+      expect(result.player1.is_a?(ComputerPlayer)).to be true
     end
   end
 
@@ -48,7 +47,7 @@ describe GameFactory, '#create_game' do
     it 'returns a game where Player2 is a computer player' do
       result = game_factory.create_game(3)
 
-      expect(result.player2.is_a?(Computer)).to be true
+      expect(result.player2.is_a?(ComputerPlayer)).to be true
     end
   end
 end
