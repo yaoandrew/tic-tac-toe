@@ -1,9 +1,7 @@
 #!/usr/local/bin/ruby
 
 require_relative 'user_interface'
-require_relative 'game'
-require_relative 'player'
-require_relative 'computer'
+require_relative 'game_factory'
 require_relative 'board'
 require_relative 'validator'
 require_relative 'board_evaluator'
@@ -12,26 +10,14 @@ validator = Validator.new
 board_evaluator = BoardEvaluator.new
 ui = UserInterface.new(validator)
 board = Board.new
+game_factory = GameFactory.new
 
 ui.welcome
 ui.prompt_user_for_game_type
 ui.get_game_type
 ui.draw_board_map
 
-case ui.game_type.to_i
-when 1
-  player1 = Player.new('X')
-  player2 = Player.new('O')
-  game = Game.new(player1, player2)
-when 2
-  player1 = Player.new('X')
-  player2 = Computer.new('O')
-  game = Game.new(player1, player2)
-when 3
-  player1 = Computer.new('X')
-  player2 = Computer.new('O')
-  game = Game.new(player1, player2)
-end
+game = game_factory.create_game(ui.game_type.to_i)
 
 until game.game_over?(board, board_evaluator) do
 
