@@ -23,7 +23,7 @@ describe Board, '#get_cell' do
       board = Board.new
       cell_num = 4
       result = board.get_cell(cell_num)
-      expect(result).to eq(Board::EMPTY_CELL)
+      expect(result).to eq('4')
     end
   end
 end

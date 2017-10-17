@@ -15,7 +15,7 @@ class Board
   end
 
   def get_cell(cell)
-    @cells[cell]
+    @cells[cell] == EMPTY_CELL ? cell.to_s : @cells[cell]
   end
 
   def mark_cell(cell)

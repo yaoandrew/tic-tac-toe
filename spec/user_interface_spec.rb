@@ -19,11 +19,11 @@ describe UserInterface do
                         X - -
                         X - - )
 
-      expected = "X | - | -\n" +
+      expected = "X | 1 | 2\n" +
                  "---------\n" +
-                 "X | - | -\n" +
+                 "X | 4 | 5\n" +
                  "---------\n" +
-                 "X | - | -\n"
+                 "X | 7 | 8\n"
 
       ui.draw_board(board)
       expect(@mock_io.printed).to eq(expected)
