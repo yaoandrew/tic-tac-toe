@@ -1,10 +1,12 @@
 class Board
 
   EMPTY_CELL = '-'
+  PLAYER_X = 'X'
+  PLAYER_O = 'O'
 
   attr_accessor :cells, :turn
 
-  def initialize(cells=nil, turn= "X")
+  def initialize(cells=nil, turn= PLAYER_X)
     @size = 3
     @cells = cells || Array.new(@size**2, EMPTY_CELL)
     @turn = turn
@@ -19,7 +21,7 @@ class Board
   end
 
   def mark_cell(cell)
-    board = Board.new(@cells.dup, xturn("O", "X"))
+    board = Board.new(@cells.dup, xturn(PLAYER_O, PLAYER_X))
     board.cells[cell] = turn
     board
   end
@@ -57,7 +59,7 @@ class Board
   end
 
   def xturn(x, o)
-    @turn == "X" ? x : o
+    @turn == PLAYER_X ? x : o
   end
 
 end

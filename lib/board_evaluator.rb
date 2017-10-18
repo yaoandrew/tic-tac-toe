@@ -31,8 +31,8 @@ class BoardEvaluator
   end
 
   def minimax(depth=1, board)
-    return 100 if who_won(board) == "X"
-    return -100 if who_won(board) == "O"
+    return 100 if who_won(board) == Board::PLAYER_X
+    return -100 if who_won(board) == Board::PLAYER_O
     return 0 if tied?(board)
     @@minicache ||= {}
     score = @@minicache[board.cells]
