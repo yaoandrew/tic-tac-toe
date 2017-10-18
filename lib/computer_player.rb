@@ -1,10 +1,6 @@
-class Computer
+require_relative 'player'
 
-  attr_accessor :symbol
-
-  def initialize(symbol)
-    @symbol = symbol
-  end
+class ComputerPlayer < Player
 
   def make_simple_move(board)
     simple_move = rand(0..8)
@@ -16,6 +12,11 @@ class Computer
 
   def make_smart_move(board, board_evaluator)
     board_evaluator.smart_move(board)
+  end
+
+  def play_game(game, ui, board, board_evaluator)
+    ui.computer_thinking
+    board = board.mark_cell(self.make_smart_move(board, board_evaluator))
   end
 
 end

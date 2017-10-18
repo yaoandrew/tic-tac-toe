@@ -45,6 +45,26 @@ class Messages
     string
   end
 
+  def pre_render_computer_thinking
+    string = ""
+    string << "The computer is thinking..."
+  end
+
+  def pre_render_player_turn(game)
+    string = ""
+    string = "Its time for #{game.current_player.symbol} to go"
+  end
+
+  def pre_render_player_choice(game)
+    string = ""
+    string = "#{game.current_player.symbol} has chosen"
+  end
+
+  def pre_render_player_move(ui)
+    string = ""
+    string = "Your move is #{ui.move}"
+  end
+
   def pre_render_winner(board, game, board_evaluator)
     string = ""
     string << game.winner(board, board_evaluator)

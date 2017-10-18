@@ -2,9 +2,9 @@ require_relative '../lib/board_evaluator'
 require_relative '../lib/board'
 
 describe BoardEvaluator, '#row_winner' do
-  
+
   context 'When called and the board contains a winning row' do
-    it 'returns true' do
+    it 'Returns true' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.cells = %w( X X X
@@ -16,7 +16,7 @@ describe BoardEvaluator, '#row_winner' do
   end
 
   context 'When called and the board does not contain a winning row' do
-    it 'returns false' do
+    it 'Returns false' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.cells = %w( X O X
@@ -31,7 +31,7 @@ end
 describe BoardEvaluator, '#column_winner?' do
 
   context 'When called and the board contains a winning column' do
-    it 'returns true' do
+    it 'Returns true' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.cells = %w( X - -
@@ -43,7 +43,7 @@ describe BoardEvaluator, '#column_winner?' do
   end
 
   context 'When called and the board does not contain a winning column' do
-    it 'returns false' do
+    it 'Returns false' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.cells = %w( X O X
@@ -55,10 +55,10 @@ describe BoardEvaluator, '#column_winner?' do
   end
 end
 
-describe Board, '#diagonal_winner?' do
+describe BoardEvaluator, '#diagonal_winner?' do
 
   context 'When called and the board contains a winning main diagonal' do
-    it 'returns true' do
+    it 'Returns true' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.cells = %w( O - -
@@ -70,7 +70,7 @@ describe Board, '#diagonal_winner?' do
   end
 
   context 'When called and the board contains a winning anti-diagonal' do
-    it 'returns true' do
+    it 'Returns true' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.cells = %w( - - X
@@ -82,7 +82,7 @@ describe Board, '#diagonal_winner?' do
   end
 
   context 'When called and the board does not contain a winning main diagonal' do
-    it 'returns false' do
+    it 'Returns false' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.cells = %w( O O O
@@ -94,7 +94,7 @@ describe Board, '#diagonal_winner?' do
   end
 
   context 'When called and the board does not contain a winning anti-diagonal' do
-    it 'returns false' do
+    it 'Returns false' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.cells = %w( - - -
@@ -107,10 +107,10 @@ describe Board, '#diagonal_winner?' do
   end
 end
 
-describe Board, '#tied?' do
+describe BoardEvaluator, '#tied?' do
 
   context 'When called and the board is tied' do
-    it 'returns true' do
+    it 'Returns true' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.cells = %w( O X O
@@ -123,7 +123,7 @@ describe Board, '#tied?' do
   end
 
   context 'When called and the board is not tied' do
-    it 'returns false' do
+    it 'Returns false' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.cells = %w( O X O
@@ -137,10 +137,10 @@ describe Board, '#tied?' do
 end
 
 
-describe Board, '#who_won' do
+describe BoardEvaluator, '#who_won' do
 
   context 'When called with a board' do
-    it 'returns the winner' do
+    it 'Returns the winner' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.cells = %w( X X X
@@ -153,10 +153,10 @@ describe Board, '#who_won' do
   end
 end
 
-describe Board, '#minimax' do
-  
+describe BoardEvaluator, '#minimax' do
+
   context 'When minimax is called with an end state board' do
-    it 'returns -100 if O is the winner' do
+    it 'Returns -100 if O is the winner' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.cells = %w( O O O
@@ -167,9 +167,9 @@ describe Board, '#minimax' do
       expect(result).to eq (-100)
     end
   end
-  
+
   context 'When minimax is called with an end state board' do
-    it 'returns 100 if X is the winner' do
+    it 'Returns 100 if X is the winner' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.cells = %w( X X X
@@ -182,7 +182,7 @@ describe Board, '#minimax' do
   end
 
   context 'When minimax is called with an end state board' do
-    it 'returns 0 if the board is tied' do
+    it 'Returns 0 if the board is tied' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.cells = %w( X O O
@@ -194,7 +194,7 @@ describe Board, '#minimax' do
   end
 
   context 'When minimax is called with a board X can win' do
-    it 'returns 99' do
+    it 'Returns 99' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.cells = %w( X - -
@@ -206,7 +206,7 @@ describe Board, '#minimax' do
   end
 
   context 'When minimax is called with a board O can win' do
-    it 'returns -99' do
+    it 'Returns -99' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.turn = "O"
@@ -220,10 +220,10 @@ describe Board, '#minimax' do
 
 end
 
-describe Board, '#smart_move' do
+describe BoardEvaluator, '#smart_move' do
 
   context 'When X can win the game in one move' do
-    it 'picks the winning spot' do
+    it 'Picks the winning spot' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.cells = %w( X - -
@@ -235,7 +235,7 @@ describe Board, '#smart_move' do
   end
 
   context 'When O can win the game in one move' do
-    it 'picks the winning spot' do
+    it 'Picks the winning spot' do
       board = Board.new
       board_evaluator = BoardEvaluator.new
       board.turn = "O"
