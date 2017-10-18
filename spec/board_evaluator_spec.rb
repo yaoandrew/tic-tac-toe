@@ -100,7 +100,6 @@ describe BoardEvaluator, '#diagonal_winner?' do
       board.cells = %w( - - -
                         - - -
                         X X X )
-
       result = board_evaluator.diagonal_winner?(board)
       expect(result).to eq false
     end
@@ -116,7 +115,6 @@ describe BoardEvaluator, '#tied?' do
       board.cells = %w( O X O
                         X X O
                         X O X )
-
       result = board_evaluator.tied?(board)
       expect(result).to eq true
     end
@@ -129,7 +127,6 @@ describe BoardEvaluator, '#tied?' do
       board.cells = %w( O X O
                         X X O
                         X X - )
-
       result = board_evaluator.tied?(board)
       expect(result).to eq false
     end
@@ -147,7 +144,6 @@ describe BoardEvaluator, '#who_won' do
                         - - -
                         - - - )
       result = board_evaluator.who_won(board)
-
       expect(result).to eq "X"
     end
   end
@@ -163,7 +159,6 @@ describe BoardEvaluator, '#minimax' do
                         - - -
                         - - - )
       result = board_evaluator.minimax(board)
-
       expect(result).to eq (-100)
     end
   end
@@ -176,7 +171,6 @@ describe BoardEvaluator, '#minimax' do
                         - - -
                         - - - )
       result = board_evaluator.minimax(board)
-
       expect(result).to eq (100)
     end
   end
@@ -217,7 +211,6 @@ describe BoardEvaluator, '#minimax' do
       expect(result).to eq (-99)
     end
   end
-
 end
 
 describe BoardEvaluator, '#smart_move' do
