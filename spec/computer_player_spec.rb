@@ -41,6 +41,10 @@ end
 
 describe ComputerPlayer, '#play_game' do
 
+  before do
+      allow($stdout).to receive(:write)
+  end
+
   context 'When called with a game, ui, board, and board_evaluator' do
     it 'Returns a board with a move made' do
       player1 = ComputerPlayer.new('X')
