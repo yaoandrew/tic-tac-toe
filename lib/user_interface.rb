@@ -58,8 +58,8 @@ class UserInterface
     @print.call @messages.pre_render_player_choice(game)
   end
 
-  def show_player_move(ui)
-    @print.call @messages.pre_render_player_move(ui)
+  def show_player_move
+    @print.call @messages.pre_render_player_move(@move)
   end
 
   def show_winner(game, board, board_evaluator)

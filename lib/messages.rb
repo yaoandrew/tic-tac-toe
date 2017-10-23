@@ -42,8 +42,8 @@ class Messages
     "#{game.current_player.symbol} has chosen"
   end
 
-  def pre_render_player_move(ui)
-    "Your move is #{ui.move}"
+  def pre_render_player_move(move)
+    "Your move is #{move}"
   end
 
   def pre_render_winner(board, game, board_evaluator)
