@@ -1,10 +1,13 @@
 #!/usr/local/bin/ruby
 
-require_relative 'user_interface'
-require_relative 'game_factory'
-require_relative 'board'
-require_relative 'validator'
-require_relative 'board_evaluator'
+lib = File.expand_path('.', __dir__)
+$:.unshift(lib) unless $:.include?(lib)
+
+require 'user_interface'
+require 'game_factory'
+require 'board'
+require 'validator'
+require 'board_evaluator'
 
 validator = Validator.new
 board_evaluator = BoardEvaluator.new

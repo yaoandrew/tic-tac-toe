@@ -1,4 +1,4 @@
-require_relative 'messages'
+require 'messages'
 
 class UserInterface
 
