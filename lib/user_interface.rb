@@ -50,12 +50,12 @@ class UserInterface
     @print.call @messages.pre_render_computer_thinking
   end
 
-  def show_player_turn(game)
-    @print.call @messages.pre_render_player_turn(game)
+  def show_player_turn(player)
+    @print.call @messages.pre_render_player_turn(player)
   end
 
-  def show_player_choice(game)
-    @print.call @messages.pre_render_player_choice(game)
+  def show_player_choice(player)
+    @print.call @messages.pre_render_player_choice(player)
   end
 
   def show_player_move

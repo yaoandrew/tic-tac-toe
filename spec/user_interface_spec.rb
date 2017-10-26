@@ -1,6 +1,6 @@
-require_relative '../lib/user_interface'
-require_relative '../lib/validator'
-require_relative '../lib/board'
+require 'user_interface'
+require 'validator'
+require 'board'
 
 describe UserInterface do
 

@@ -1,5 +1,5 @@
-require_relative '../lib/board'
-require_relative '../lib/board_evaluator'
+require 'board'
+require 'board_evaluator'
 
 describe Board, '#initialize' do
 

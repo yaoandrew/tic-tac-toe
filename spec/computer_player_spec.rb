@@ -1,9 +1,9 @@
-require_relative '../lib/computer_player'
-require_relative '../lib/board'
-require_relative '../lib/board_evaluator'
-require_relative '../lib/user_interface'
-require_relative '../lib/game'
-require_relative '../lib/validator'
+require 'computer_player'
+require 'board'
+require 'board_evaluator'
+require 'user_interface'
+require 'game'
+require 'validator'
 
 describe ComputerPlayer, '#make_smart_move' do
 

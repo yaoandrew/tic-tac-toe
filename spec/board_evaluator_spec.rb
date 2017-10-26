@@ -1,5 +1,5 @@
-require_relative '../lib/board_evaluator'
-require_relative '../lib/board'
+require 'board_evaluator'
+require 'board'
 
 describe BoardEvaluator, '#row_winner' do
 

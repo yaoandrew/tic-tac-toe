@@ -1,8 +1,58 @@
-require_relative '../lib/game'
-require_relative '../lib/player'
-require_relative '../lib/board'
-require_relative '../lib/board_evaluator'
+require 'game'
+require 'player'
+require 'human_player'
+require 'computer_player'
+require 'validator'
+require 'user_interface'
+require 'board'
+require 'board_evaluator'
 
+describe Game, '#toggle_player' do
+
+  context 'When the current player is Player1' do
+    it 'Changes the current player to Player2' do
+      player1 = Player.new('X')
+      player2 = Player.new('O')
+      game = Game.new(player1, player2)
+
+      game.toggle_player
+      expect(game.current_player).to eq player2
+    end
+  end
+end
+
+describe Game, '#get_game_prompts' do
+
+  context 'When the current player is a Human player' do
+    it 'Shows the screen prompts for a human player' do
+      validator = Validator.new
+      ui = UserInterface.new(validator)
+      board = Board.new
+      board_evaluator = BoardEvaluator.new
+      player1 = HumanPlayer.new('X')
+      player2 = ComputerPlayer.new('O')
+      game = Game.new(player1, player2)
+      game.get_game_prompts(ui, board, board_evaluator)
+    end
+  end
+
+  context 'When the current player is a Computer player' do
+    it 'Shows the screen prompts for a computer player' do
+      validator = Validator.new
+      ui = UserInterface.new(validator)
+      board = Board.new
+      board_evaluator = BoardEvaluator.new
+      player1 = HumanPlayer.new('X')
+      player2 = ComputerPlayer.new('O')
+      game = Game.new(player1, player2)
+      game.toggle_player
+      prompt = "The computer is thinking..."
+      result = game.get_game_prompts(ui, board, board_evaluator)
+
+      expect{result}.to output(prompt).to_stdout
+    end
+  end
+end
 
 describe Game, '#game_over?' do
 

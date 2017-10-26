@@ -23,11 +23,10 @@ ui.draw_board_map
 game = game_factory.create_game(ui.game_type.to_i)
 
 until game.game_over?(board, board_evaluator) do
-
+  game.get_game_prompts(ui, board, board_evaluator)
   board = game.current_player.play_game(game, ui, board, board_evaluator)
   ui.draw_board(board)
   game.toggle_player
-
 end
 
 ui.show_winner(game, board, board_evaluator)

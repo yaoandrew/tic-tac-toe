@@ -1,4 +1,4 @@
-require_relative '../lib/game_factory'
+require 'game_factory'
 
 describe GameFactory, '#create_game' do
       game_factory = GameFactory.new

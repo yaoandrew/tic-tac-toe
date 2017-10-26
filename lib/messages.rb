@@ -34,12 +34,12 @@ class Messages
     "The computer is thinking..."
   end
 
-  def pre_render_player_turn(game)
-    "Its time for #{game.current_player.symbol} to go"
+  def pre_render_player_turn(player)
+    "Its time for #{player.symbol} to go"
   end
 
-  def pre_render_player_choice(game)
-    "#{game.current_player.symbol} has chosen"
+  def pre_render_player_choice(player)
+    "#{player.symbol} has chosen"
   end
 
   def pre_render_player_move(move)

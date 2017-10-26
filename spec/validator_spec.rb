@@ -1,5 +1,5 @@
-require_relative '../lib/validator'
-require_relative '../lib/board'
+require 'validator'
+require 'board'
 
 describe Validator, '#valid_game?' do
 

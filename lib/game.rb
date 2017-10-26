@@ -8,6 +8,17 @@ class Game
     @current_player = player1
   end
 
+  def get_game_prompts(ui, board, board_evaluator)
+    if @current_player.is_a?(HumanPlayer)
+      ui.show_player_turn(@current_player)
+      ui.prompt_player_for_move(board)
+      ui.show_player_choice(@current_player)
+      ui.show_player_move
+    else
+      ui.computer_thinking
+    end
+  end
+
   def toggle_player
     @current_player == @player1 ? @current_player = @player2 : @current_player = @player1
   end
