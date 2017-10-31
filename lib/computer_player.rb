@@ -7,6 +7,7 @@ class ComputerPlayer < Player
   end
 
   def play_game(game, ui, board, board_evaluator)
+    puts "computer is thinking..."
     board = board.mark_cell(board_evaluator.smart_move(board))
   end
 

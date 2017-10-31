@@ -1,0 +1,8 @@
+en:
+  welcome:    "Let's play tic tac toe"
+  game_type:   ""
+  select_game: "Please select 1, 2 or 3."
+  make_move:   "Please make your move"
+  valid_space: "Please select a valid space on the board."
+  cats_game:   "Cat's game!!"
+  thinking:    "The computer is thinking..."
